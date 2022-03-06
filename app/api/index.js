@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
-const url = "https://api.tanoplus.com"
+const url = 'https://api.tanoplus.com';
 
-axios.defaults.headers.post["Content-Type"] = "application/json"
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export default {
-    get: axios.get,
-    post: axios.post,
-    url,
+  get: axios.get,
+  post: axios.post,
+  url,
 };
