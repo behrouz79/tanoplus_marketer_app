@@ -1,11 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, ScrollView} from 'react-native';
 import MainScreen from '../components/shared/MainScreen';
+import CardButton from '../components/buttons/CardButton';
 
 const HomeScreen = () => {
   return (
     <MainScreen style={styles.container}>
-      <Text>wigjweoirgol</Text>
+      <ScrollView>
+        <CardButton onPress={() => {}} title="ساخت سرویس" />
+      </ScrollView>
     </MainScreen>
   );
 };

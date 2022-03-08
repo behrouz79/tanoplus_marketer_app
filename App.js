@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from './app/screens/SplashScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from './app/screens/LoginScreen';
-import HomeRoutes from './app/routes/Home';
+import HomeScreen from './app/screens/HomeScreen';
 
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);
@@ -20,7 +20,7 @@ const App = () => {
         }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeRoutes} />
+        <Stack.Screen options={{headerShown: true, headerTitleAlign: 'center', headerTitle: 'پنل بازاریاب'}} name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

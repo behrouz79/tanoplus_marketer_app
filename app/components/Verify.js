@@ -6,7 +6,7 @@ import {verify} from '../api/users';
 import Toast from 'react-native-tiny-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {successToast, customToast, LoadingToast} from '../utils/toasts';
-import CustomButton from './../components/CustomButton';
+import CustomButton from './buttons/CustomButton';
 
 const validationSchema = Yup.object().shape({
   verify_code: Yup.string()
