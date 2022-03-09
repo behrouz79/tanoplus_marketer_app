@@ -13,7 +13,11 @@ const LoginScreen = ({navigation}) => {
       {userCode === 0 ? (
         <Login setUserCode={setUserCode} />
       ) : (
-        <Verify userCode={userCode} setUserCode={setUserCode} navigation={navigation} />
+        <Verify
+          userCode={userCode}
+          setUserCode={setUserCode}
+          navigation={navigation}
+        />
       )}
     </MainScreen>
   );

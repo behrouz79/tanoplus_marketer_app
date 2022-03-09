@@ -6,26 +6,31 @@ import {
   ImageBackground,
   Text,
 } from 'react-native';
+import {useFormikContext} from 'formik';
 
-const ImageButton = ({title, setImage, image}) => {
+const CustomImageInput = ({title, setImage, image, ...otherProps}) => {
+  const {setFieldValue} = useFormikContext();
+
   const picker = async () => {
-    if (image == null) {
+    if (image === '') {
       let image = await ImagePicker.openPicker({
         cropping: true,
         compressImageQuality: 0.5,
       });
+      setFieldValue(title, image.path);
       setImage(image.path);
     } else {
-      setImage(null);
+      setFieldValue(title, '');
+      setImage('');
     }
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={picker}>
+    <TouchableOpacity style={styles.container} onPress={picker} {...otherProps}>
       <ImageBackground
         style={styles.bg}
         source={
-          image == null
+          image === ''
             ? {
                 uri: 'https://tanoplus.s3.ir-thr-at1.arvanstorage.com/noimage.jpg?AWSAccessKeyId=3e86eb8c-debf-43ad-8119-38ba993b8831&Signature=IYq%2FFct%2BF%2FQtxeM3e37QoAMbHZo%3D&Expires=1646845707',
               }
@@ -37,7 +42,7 @@ const ImageButton = ({title, setImage, image}) => {
   );
 };
 
-export default ImageButton;
+export default CustomImageInput;
 
 const styles = StyleSheet.create({
   container: {
