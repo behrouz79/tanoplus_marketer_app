@@ -16,8 +16,9 @@ const CustomImageInput = ({title, setImage, image, ...otherProps}) => {
       let image = await ImagePicker.openPicker({
         cropping: true,
         compressImageQuality: 0.5,
+        includeBase64: true,
       });
-      setFieldValue(title, image.path);
+      setFieldValue(title, image);
       setImage(image.path);
     } else {
       setFieldValue(title, '');

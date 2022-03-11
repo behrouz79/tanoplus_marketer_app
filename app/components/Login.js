@@ -5,7 +5,6 @@ import {login} from '../api/users';
 import Toast from 'react-native-tiny-toast';
 import {successToast, customToast, LoadingToast} from '../utils/toasts';
 import * as Yup from 'yup';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const validationSchema = Yup.object().shape({
   user_code: Yup.string()
@@ -23,11 +22,6 @@ const Login = ({setUserCode}) => {
       if (data.status === 200) {
         setUserCode(values.user_code);
         successToast(data.message);
-        try {
-          await AsyncStorage.setItem('user_code', values.user_code);
-        } catch (e) {
-          // saving error
-        }
       } else if (data.status === 409) {
         customToast(data.message);
       } else {

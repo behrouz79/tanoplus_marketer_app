@@ -7,6 +7,7 @@ import Toast from 'react-native-tiny-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {successToast, customToast, LoadingToast} from '../utils/toasts';
 import CustomButton from './buttons/CustomButton';
+import { setToken } from "../utils/jwt";
 
 const validationSchema = Yup.object().shape({
   verify_code: Yup.string()
@@ -23,12 +24,8 @@ const Verify = ({userCode, setUserCode, navigation}) => {
       Toast.hide();
       if (data.status === 200) {
         successToast(data.message);
-        try {
-          await AsyncStorage.setItem('user_code', JSON.stringify(userCode));
-        } catch (e) {
-          // saving error
-        }
-        navigation.replace('Home');
+        await setToken(data.state);
+        navigation.replace('Index');
       } else if (data.status === 406) {
         customToast(data.message);
       } else if (data.status === 409) {

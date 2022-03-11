@@ -1,16 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import MainScreen from '../components/shared/MainScreen';
 import {Image, StyleSheet} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {checkToken} from '../utils/jwt';
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      AsyncStorage.getItem('user_code').then(value =>
-        value === null
-          ? navigation.replace('Login')
-          : navigation.replace('Home'),
-      );
+      checkToken().then(value => {
+        value ? navigation.replace('Index') : navigation.replace('Login');
+      });
     }, 2000);
   }, []);
 

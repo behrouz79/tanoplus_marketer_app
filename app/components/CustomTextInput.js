@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
     width: '90%',
     borderRadius: 15,
+    alignSelf: 'center',
+    marginVertical: 5,
   },
   text: {
     fontSize: 15,
