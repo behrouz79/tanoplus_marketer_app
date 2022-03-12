@@ -1,13 +1,34 @@
 import React, {useEffect} from 'react';
 import MainScreen from '../components/shared/MainScreen';
-import {Image, StyleSheet} from 'react-native';
+import {Alert, BackHandler, Image, StyleSheet} from 'react-native';
 import {checkToken} from '../utils/jwt';
+import NetInfo from '@react-native-community/netinfo';
+
+const confirmationAlert = () => {
+  return Alert.alert(
+    'دسترسی به اینترنت',
+    'برای استفاده از برنامه باید به اینترنت متصل باشید.',
+    [
+      {
+        text: 'باشه',
+        onPress: BackHandler.exitApp,
+      },
+      {cancelable: false},
+    ],
+  );
+};
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      checkToken().then(value => {
-        value ? navigation.replace('Index') : navigation.replace('Login');
+      NetInfo.fetch().then(state => {
+        if (state.isConnected) {
+          checkToken().then(value => {
+            value ? navigation.replace('Index') : navigation.replace('Login');
+          });
+        } else {
+          confirmationAlert();
+        }
       });
     }, 2000);
   }, []);
