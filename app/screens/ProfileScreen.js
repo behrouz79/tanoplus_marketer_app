@@ -9,9 +9,15 @@ const HomeScreen = ({navigation}) => {
       <ScrollView>
         <CardButton
           onPress={() => {
-            navigation.navigate('SubScription');
+            navigation.navigate('Suggestion');
           }}
           title="ارسال پیشنهاد"
+        />
+        <CardButton
+          onPress={() => {
+            navigation.navigate('SuggestionDetails');
+          }}
+          title="وضعیت پشنهادات"
         />
       </ScrollView>
     </MainScreen>

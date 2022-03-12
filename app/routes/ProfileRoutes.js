@@ -1,6 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import ProfileScreen from '../screens/ProfileScreen';
+import Suggestion from '../components/Suggestion';
+import SuggestionDetails from '../components/SuggestionDetails';
 
 const Stack = createStackNavigator();
 
@@ -13,9 +15,14 @@ const ProfileRoutes = () => {
         component={ProfileScreen}
       />
       <Stack.Screen
-        options={{headerShown: false}}
+        options={{headerTitle: 'ارسال پیشنهاد', headerTitleAlign: 'center'}}
         name="Suggestion"
-        component={ProfileScreen}
+        component={Suggestion}
+      />
+      <Stack.Screen
+        options={{headerTitle: 'وضعیت پیشنهادات', headerTitleAlign: 'center'}}
+        name="SuggestionDetails"
+        component={SuggestionDetails}
       />
     </Stack.Navigator>
   );

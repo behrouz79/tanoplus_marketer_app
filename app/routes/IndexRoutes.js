@@ -21,12 +21,20 @@ const IndexRoutes = () => {
         },
       })}>
       <Tab.Screen
-        options={{headerTitle: 'پنل بازاریاب', headerTitleAlign: 'center'}}
+        options={{
+          headerTitle: 'پنل بازاریاب',
+          headerTitleAlign: 'center',
+          tabBarLabel: 'خدمات',
+        }}
         name="Services"
         component={HomeRoutes}
       />
       <Tab.Screen
-        options={{headerTitle: 'پروفایل', headerTitleAlign: 'center'}}
+        options={{
+          headerTitle: 'پروفایل',
+          headerTitleAlign: 'center',
+          tabBarLabel: 'کاربری',
+        }}
         name="Profile"
         component={ProfileRoutes}
       />
