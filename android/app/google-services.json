@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "395585964782",
+    "project_id": "tanoplus-203b0",
+    "storage_bucket": "tanoplus-203b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:395585964782:android:9fef162cacec0ee09801ff",
+        "android_client_info": {
+          "package_name": "com.tanoplus_marketer_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "395585964782-n2taj0asilmg7rja17p7fk1no7bta9un.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt0qh_3Fk5kK8Rn9jX7pJVQlvBqgnrNCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "395585964782-n2taj0asilmg7rja17p7fk1no7bta9un.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
