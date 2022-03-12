@@ -5,8 +5,8 @@ import {useQuery} from 'react-query';
 import {buySubscription, getServices} from '../api/services';
 import ServiceCard from './ServiceCard';
 import SubScriptionModal from './modals/SubScriptionModal';
-import {dismiss} from 'react-native/Libraries/LogBox/Data/LogBoxData';
-import {customToast} from '../utils/toasts';
+import {customToast, LoadingToast, successToast} from '../utils/toasts';
+import Toast from 'react-native-tiny-toast';
 
 const SubScription = () => {
   const [services, setServices] = useState([]);
@@ -25,12 +25,19 @@ const SubScription = () => {
       [
         {
           text: 'بلی',
-          onPress: async () => {
-            customToast('اجرای درخواست ...');
-            buySubscription(selected, subscription_id).then(res =>
-              console.log(res),
+          onPress: () => {
+            setModalVisible(!modalVisible);
+            LoadingToast('اجرای درخواست ...');
+            buySubscription(selected, subscription_id).then(
+              ({data: {message, status}}) => {
+                if (status === 200) {
+                  successToast(message);
+                } else {
+                  customToast(message);
+                }
+                Toast.hide();
+              },
             );
-            dismiss();
           },
         },
         {

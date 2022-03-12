@@ -33,7 +33,9 @@ const CustomModal = ({
                   <TouchableOpacity
                     key={item.id}
                     onPress={() => onPressButton(item)}>
-                    <Text style={styles.modalText}>{item.title ? item.title : item.name}</Text>
+                    <Text style={styles.modalText}>
+                      {item.title ? item.title : item.name}
+                    </Text>
                   </TouchableOpacity>
                 ))
               ) : (
@@ -101,7 +103,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     fontSize: 15,
     fontWeight: 'bold',
-    width: '100%',
   },
   title: {
     alignSelf: 'center',

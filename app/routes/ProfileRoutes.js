@@ -4,16 +4,21 @@ import ProfileScreen from '../screens/ProfileScreen';
 
 const Stack = createStackNavigator();
 
-const IndexRoutes = () => {
+const ProfileRoutes = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         options={{headerShown: false}}
-        name="Home"
+        name="ProfileHome"
+        component={ProfileScreen}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="Suggestion"
         component={ProfileScreen}
       />
     </Stack.Navigator>
   );
 };
 
-export default IndexRoutes;
+export default ProfileRoutes;

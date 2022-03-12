@@ -11,7 +11,7 @@ const IndexRoutes = () => {
     <Stack.Navigator>
       <Stack.Screen
         options={{headerShown: false}}
-        name="Home"
+        name="HomeHome"
         component={HomeScreen}
       />
       <Stack.Screen
