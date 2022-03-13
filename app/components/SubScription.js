@@ -30,12 +30,12 @@ const SubScription = () => {
             LoadingToast('اجرای درخواست ...');
             buySubscription(selected, subscription_id).then(
               ({data: {message, status}}) => {
+                Toast.hide();
                 if (status === 200) {
                   successToast(message);
                 } else {
                   customToast(message);
                 }
-                Toast.hide();
               },
             );
           },
