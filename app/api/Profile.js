@@ -30,3 +30,16 @@ export const getSuggestions = async () => {
     console.log(e);
   }
 };
+
+export const getProfileDta = async () => {
+  try {
+    const {data} = await http.get(`${http.url}/marketer/info/`, {
+      headers: {
+        Authorization: `Bearer ${await token()}`,
+      },
+    });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
