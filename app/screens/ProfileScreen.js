@@ -4,7 +4,7 @@ import MainScreen from '../components/shared/MainScreen';
 import CardButton from '../components/buttons/CardButton';
 import {useQuery} from 'react-query';
 import {getProfileDta} from '../api/Profile';
-import InfoCard from '../components/InfoCard';
+import InfoCard from '../components/cards/InfoCard';
 
 const HomeScreen = ({navigation}) => {
   const {isLoading, error, data} = useQuery('ProfileData', getProfileDta);

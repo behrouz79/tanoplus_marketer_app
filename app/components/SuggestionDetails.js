@@ -4,7 +4,7 @@ import MainScreen from './shared/MainScreen';
 import {useQuery} from 'react-query';
 import {getSuggestions} from '../api/Profile';
 import ServiceCard from './ServiceCard';
-import SuggestionDetailCard from './SuggestionDetailCard';
+import SuggestionDetailCard from './cards/SuggestionDetailCard';
 
 const SuggestionDetails = () => {
   const {isLoading, error, data} = useQuery(
