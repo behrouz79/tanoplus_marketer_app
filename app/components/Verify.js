@@ -4,10 +4,9 @@ import * as Yup from 'yup';
 import {View} from 'react-native';
 import {verify} from '../api/users';
 import Toast from 'react-native-tiny-toast';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {successToast, customToast, LoadingToast} from '../utils/toasts';
 import CustomButton from './buttons/CustomButton';
-import { setToken } from "../utils/jwt";
+import {setToken} from '../utils/jwt';
 
 const validationSchema = Yup.object().shape({
   verify_code: Yup.string()

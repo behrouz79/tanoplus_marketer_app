@@ -1,21 +1,19 @@
 import React, {useState} from 'react';
-import {StyleSheet, Image} from 'react-native';
+import {StyleSheet} from 'react-native';
 import MainScreen from '../components/shared/MainScreen';
 import Login from '../components/Login';
-import Verify from '../components/Verify';
+import VerifyModal from '../components/modals/VerifyModal';
 
 const LoginScreen = ({navigation}) => {
   const [userCode, setUserCode] = useState(0);
 
   return (
     <MainScreen style={styles.container}>
-      <Image style={styles.logo} source={require('../assets/logo.png')} />
-      {userCode === 0 ? (
-        <Login setUserCode={setUserCode} />
-      ) : (
-        <Verify
+      <Login setUserCode={setUserCode} />
+      {userCode !== 0 && (
+        <VerifyModal
           userCode={userCode}
-          setUserCode={setUserCode}
+          setVisible={setUserCode}
           navigation={navigation}
         />
       )}

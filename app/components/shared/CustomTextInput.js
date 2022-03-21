@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, TextInput} from 'react-native';
+import {Colors} from '../../constants/colors';
 
 const CustomTextInput = ({...otherProps}) => {
   return (
@@ -15,15 +16,16 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
     padding: 5,
-    backgroundColor: 'lightgray',
+    backgroundColor: Colors.lightGray,
     width: '90%',
-    borderRadius: 15,
+    borderRadius: 8,
     alignSelf: 'center',
     marginVertical: 5,
   },
   text: {
     fontSize: 15,
     fontFamily: 'Shabnam',
-    textAlign: 'center',
+    color: Colors.subTitle,
+    textAlign: 'right',
   },
 });

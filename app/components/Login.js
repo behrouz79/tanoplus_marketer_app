@@ -1,10 +1,13 @@
 import React from 'react';
 import {CustomForm, CustomFormField, SubmitButton} from '../components/forms';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {login} from '../api/users';
 import Toast from 'react-native-tiny-toast';
 import {successToast, customToast, LoadingToast} from '../utils/toasts';
 import * as Yup from 'yup';
+import {Colors} from '../constants/colors';
+import CustomText from './CustomText';
+import MainScreen from './shared/MainScreen';
 
 const validationSchema = Yup.object().shape({
   user_code: Yup.string()
@@ -34,25 +37,52 @@ const Login = ({setUserCode}) => {
   };
 
   return (
-    <CustomForm
-      initialValues={{user_code: ''}}
-      onSubmit={values => {
-        LoadingToast('ارسال کد ...');
-        sendCodeHandler(values);
-      }}
-      validationSchema={validationSchema}>
-      <CustomFormField
-        placeholder="کد بازاریابی"
-        autoCorrect={false}
-        keyboardType="numeric"
-        placeholderTextColor="royalblue"
-        name="user_code"
-      />
-      <View style={{width: '60%'}}>
-        <SubmitButton title="ارسال کد تایید" />
-      </View>
-    </CustomForm>
+    <MainScreen style={styles.container}>
+      <CustomText style={styles.title}>سلام رفیق</CustomText>
+      <CustomText style={styles.subTitle}>
+        برای وارد شدن لطفا کد بازاریابی خود را وارد کن
+      </CustomText>
+      <CustomForm
+        initialValues={{user_code: ''}}
+        onSubmit={values => {
+          LoadingToast('ارسال کد ...');
+          sendCodeHandler(values);
+        }}
+        validationSchema={validationSchema}>
+        <CustomFormField
+          placeholder="کد بازاریابی"
+          autoCorrect={false}
+          keyboardType="numeric"
+          name="user_code"
+        />
+        <View style={styles.submitBtn}>
+          <SubmitButton title="ورود" />
+        </View>
+      </CustomForm>
+    </MainScreen>
   );
 };
 
 export default Login;
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    width: '100%',
+  },
+  subTitle: {
+    color: Colors.subTitle,
+    fontSize: 14,
+    textAlign: 'left',
+    marginHorizontal: 24,
+  },
+  title: {
+    color: Colors.title,
+    fontSize: 20,
+    textAlign: 'left',
+    marginHorizontal: 24,
+  },
+  submitBtn: {
+    marginHorizontal: 114,
+  },
+});

@@ -9,6 +9,7 @@ export default MainScreen;
 
 const styles = StyleSheet.create({
   screen: {
+    backgroundColor: 'white',
     flex: 1,
   },
 });
