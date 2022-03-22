@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from 'react';
 import {I18nManager} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from './app/screens/SplashScreen';
@@ -31,7 +31,7 @@ const App = () => {
   });
   useEffect(() => {
     Firebase.initializeApp(App);
-  },[])
+  }, []);
 
   return (
     <NavigationContainer>

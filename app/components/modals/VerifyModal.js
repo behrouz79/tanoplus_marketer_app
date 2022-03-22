@@ -37,7 +37,7 @@ const VerifyModal = ({userCode, setVisible, navigation}) => {
   };
   return (
     <Modal animationType="slide" transparent={true}>
-      <View style={{flex: 1, backgroundColor: '#00000052'}} />
+      <View style={{flex: 1, backgroundColor: Colors.opacityMode}} />
       <View style={styles.modalView}>
         <CustomText style={styles.title}>فقط یه قدم دیگه</CustomText>
         <CustomText style={styles.subTitle}>

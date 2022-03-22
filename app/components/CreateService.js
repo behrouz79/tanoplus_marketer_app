@@ -14,6 +14,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import * as Yup from 'yup';
 import CustomImageFormField from './forms/CustomImageFormField';
@@ -21,6 +22,8 @@ import {CustomForm, CustomFormField, SubmitButton} from './forms';
 import CustomModal from './modals/CustomModal';
 import {customToast, LoadingToast, successToast} from '../utils/toasts';
 import Toast from 'react-native-tiny-toast';
+import CustomText from './CustomText';
+import {Colors} from '../constants/colors';
 
 const CreateService = ({navigation}) => {
   const [logo, setLogo] = useState('');
@@ -36,8 +39,8 @@ const CreateService = ({navigation}) => {
   const [provinceVisible, setProvinceVisible] = useState(false);
   const [cityVisible, setCityVisible] = useState(false);
   const [cityList, setCityList] = useState(false);
-  const [province, setProvince] = useState({id: 0, name: 'انتخاب استان'});
-  const [city, setCity] = useState({id: 0, name: 'انتخاب شهر'});
+  const [province, setProvince] = useState({id: 0, name: 'استان'});
+  const [city, setCity] = useState({id: 0, name: 'شهر'});
   const {data: category_items} = useQuery('category', getCategory);
   const {data: province_items} = useQuery('province', getProvince);
 
@@ -78,7 +81,7 @@ const CreateService = ({navigation}) => {
     setProvinceVisible(true);
     setCityVisible(false);
     setCityList(false);
-    setProvince({id: 0, name: 'انتخاب استان'});
+    setProvince({id: 0, name: 'استان'});
   };
 
   const handleSubmit = async values => {
@@ -136,91 +139,120 @@ const CreateService = ({navigation}) => {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}>
         <ScrollView>
+          <CustomText style={styles.title}>اطلاعات شخصی</CustomText>
           <CustomFormField
             placeholder="موبایل"
             autoCorrect={false}
             keyboardType="numeric"
-            placeholderTextColor="royalblue"
+            placeholderTextColor={Colors.gray}
             name="phone"
           />
           <CustomFormField
             placeholder="نام"
             autoCorrect={false}
-            placeholderTextColor="royalblue"
+            placeholderTextColor={Colors.gray}
             name="firstname"
           />
           <CustomFormField
             placeholder="نام خانوادگی"
             autoCorrect={false}
-            placeholderTextColor="royalblue"
+            placeholderTextColor={Colors.gray}
             name="family"
           />
+          <CustomText style={styles.title}>اطلاعات شغلی</CustomText>
           <CustomFormField
-            placeholder="نام سرویس"
+            placeholder="نام برند (کسب وکار/خدمات)"
             autoCorrect={false}
-            placeholderTextColor="royalblue"
+            placeholderTextColor={Colors.gray}
             name="name"
           />
           <TouchableOpacity
             onPress={() => setCategoryVisible(!categoryVisible)}>
             <Text style={styles.job}>
-              {category.title}, {subCategory.title}
+              {category.title}-{subCategory.title}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setProvinceVisible(!provinceVisible)}>
             <Text style={styles.job}>
-              {province.name}, {city.name}
+              {province.name}-{city.name}
             </Text>
           </TouchableOpacity>
+          <CustomText style={styles.title}>بنر و لوگو</CustomText>
           <CustomImageFormField
-            title="logo"
+            title="لوگو"
             name="logo"
             image={logo}
             setImage={setLogo}
+            style={{
+              backgroundColor: Colors.lightGray,
+              borderRadius: 8,
+              height: 200,
+            }}
           />
           <CustomImageFormField
-            title="banner"
+            title="بنر"
             name="banner"
             image={banner}
             setImage={setBanner}
+            style={{
+              borderRadius:
+                Math.round(
+                  Dimensions.get('window').width +
+                    Dimensions.get('window').height,
+                ) / 2,
+              width: Dimensions.get('window').width * 0.5,
+              height: Dimensions.get('window').width * 0.5,
+              backgroundColor: Colors.lightGray,
+            }}
           />
           <View style={{width: '90%', alignSelf: 'center'}}>
             <SubmitButton title="ساخت سرویس" />
           </View>
-          <CustomModal
-            visible={categoryVisible}
-            setVisible={setCategoryVisible}
-            data={category_items?.data}
-            onPressButton={openSubCategory}
-            onPressClose={() => {
-              setCategoryVisible(!categoryVisible);
-            }}
-          />
-          <CustomModal
-            visible={subCategoryVisible}
-            setVisible={setSubCategoryVisible}
-            data={subCategoryList}
-            onPressButton={selectSubCategory}
-            onPressClose={closeSubCategory}
-          />
-
-          <CustomModal
-            visible={provinceVisible}
-            setVisible={setProvinceVisible}
-            data={province_items?.data}
-            onPressButton={openCity}
-            onPressClose={() => {
-              setProvinceVisible(!provinceVisible);
-            }}
-          />
-          <CustomModal
-            visible={cityVisible}
-            setVisible={setCityVisible}
-            data={cityList}
-            onPressButton={selectCity}
-            onPressClose={closeCity}
-          />
+          {categoryVisible && (
+            <CustomModal
+              title="انتخاب دسته بندی"
+              visible={categoryVisible}
+              setVisible={setCategoryVisible}
+              data={category_items?.data}
+              onPressButton={openSubCategory}
+              onPressClose={() => {
+                setCategoryVisible(!categoryVisible);
+              }}
+            />
+          )}
+          {subCategoryVisible && (
+            <CustomModal
+              title={category.title}
+              visible={subCategoryVisible}
+              setVisible={setSubCategoryVisible}
+              data={subCategoryList}
+              onPressButton={selectSubCategory}
+              onPressClose={closeSubCategory}
+            />
+          )}
+          {provinceVisible && (
+            <CustomModal
+              title="انتخاب استان"
+              visible={provinceVisible}
+              setVisible={setProvinceVisible}
+              data={province_items?.data}
+              onPressButton={openCity}
+              onPressClose={() => {
+                setProvinceVisible(!provinceVisible);
+              }}
+            />
+          )}
+          {cityVisible && (
+            <CustomModal
+              title={province.name}
+              visible={cityVisible}
+              setVisible={setCityVisible}
+              data={cityList}
+              onPressButton={selectCity}
+              onPressClose={closeCity}
+            />
+          )}
         </ScrollView>
       </CustomForm>
     </MainScreen>
@@ -230,16 +262,21 @@ const CreateService = ({navigation}) => {
 export default CreateService;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'lightgray',
-  },
+  container: {},
   job: {
     textAlign: 'center',
-    padding: 10,
-    backgroundColor: 'lightblue',
-    borderRadius: 25,
-    width: '80%',
+    padding: 15,
+    borderRadius: 8,
+    width: '90%',
     alignSelf: 'center',
     marginBottom: 10,
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: Colors.primary,
+    color: Colors.primary,
+  },
+  title: {
+    paddingHorizontal: 12,
+    paddingVertical: 5,
   },
 });

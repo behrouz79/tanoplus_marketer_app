@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Modal,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import CustomText from '../CustomText';
+import {Colors} from '../../constants/colors';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const CustomModal = ({
   visible,
@@ -15,44 +19,78 @@ const CustomModal = ({
   onPressButton,
   data,
   onPressClose,
+  title,
 }) => {
+  const [showData, setShowData] = useState([]);
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    {
+      data && setShowData(data);
+    }
+  }, [data]);
+
+  const filter = () => {
+    const keyword = search;
+    if (keyword !== '') {
+      const results = data.filter(item =>
+        item.title ? item.title.includes(keyword) : item.name.includes(keyword),
+      );
+      setShowData(results);
+    } else {
+      setShowData(data);
+    }
+  };
+
   return (
-    <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={visible}
-        onRequestClose={() => {
-          setVisible(!visible);
-        }}>
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={visible}
+      onRequestClose={() => {
+        setVisible(!visible);
+      }}>
+      <View
+        style={[styles.centeredView, {backgroundColor: Colors.opacityMode}]}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <CustomText>{title}</CustomText>
+            <TextInput
+              placeholder="جستجو"
+              style={styles.input}
+              placeholderTextColor={Colors.title}
+              textAlign="right"
+              onChangeText={value => setSearch(perv => value)}
+              onChange={filter}
+            />
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={onPressClose}>
+              <CustomText style={styles.textStyle}>X</CustomText>
+            </Pressable>
             <ScrollView style={{marginBottom: 20}}>
-              {data ? (
-                data.map(item => (
+              {showData ? (
+                showData.map(item => (
                   <TouchableOpacity
+                    style={styles.row}
                     key={item.id}
                     onPress={() => onPressButton(item)}>
-                    <Text style={styles.modalText}>
+                    <CustomText style={styles.modalText}>
                       {item.title ? item.title : item.name}
-                    </Text>
+                    </CustomText>
+                    <Icon name="caret-left" size={20} />
                   </TouchableOpacity>
                 ))
               ) : (
                 <View>
-                  <Text>loading</Text>
+                  <CustomText>loading</CustomText>
                 </View>
               )}
             </ScrollView>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={onPressClose}>
-              <Text style={styles.textStyle}>بستن دسته بندی</Text>
-            </Pressable>
           </View>
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   );
 };
 
@@ -61,8 +99,10 @@ export default CustomModal;
 const styles = StyleSheet.create({
   centeredView: {
     justifyContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
     flex: 1,
+    width: '100%',
   },
   modalView: {
     backgroundColor: 'white',
@@ -86,7 +126,9 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    position: 'absolute',
+    top: 10,
+    left: 10,
   },
   textStyle: {
     color: 'white',
@@ -94,13 +136,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   modalText: {
-    backgroundColor: 'lightgray',
     marginBottom: 3,
-    textAlign: 'center',
+    textAlign: 'left',
     padding: 10,
     flex: 1,
-    minWidth: '100%',
-    borderRadius: 15,
     fontSize: 15,
     fontWeight: 'bold',
   },
@@ -108,5 +147,20 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 25,
     fontWeight: 'bold',
+  },
+  input: {
+    marginVertical: 5,
+    paddingVertical: 5,
+    borderRadius: 8,
+    borderWidth: 2,
+    width: '100%',
+    borderColor: Colors.lightGray,
+  },
+  row: {
+    flexDirection: 'row',
+    minWidth: '100%',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: Colors.opacityMode,
   },
 });

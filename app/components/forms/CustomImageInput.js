@@ -7,8 +7,9 @@ import {
   Text,
 } from 'react-native';
 import {useFormikContext} from 'formik';
+import { Colors } from "../../constants/colors";
 
-const CustomImageInput = ({title, setImage, image, ...otherProps}) => {
+const CustomImageInput = ({title, setImage, image, style, ...otherProps}) => {
   const {setFieldValue} = useFormikContext();
 
   const picker = async () => {
@@ -27,7 +28,7 @@ const CustomImageInput = ({title, setImage, image, ...otherProps}) => {
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={picker} {...otherProps}>
+    <TouchableOpacity style={[styles.container, style]} onPress={picker} {...otherProps}>
       <ImageBackground
         style={styles.bg}
         source={
