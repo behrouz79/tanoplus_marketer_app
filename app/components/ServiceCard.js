@@ -1,17 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import CustomText from './CustomText';
 
 const ServiceCard = ({item, modalVisible, setModalVisible, setSelected}) => {
   return (
     <View style={styles.container}>
-      <Text>{item.name}</Text>
+      <CustomText>{item.name}</CustomText>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
           setSelected(item.id);
           setModalVisible(!modalVisible);
         }}>
-        <Text>خرید اشتراک</Text>
+        <CustomText>خرید اشتراک</CustomText>
       </TouchableOpacity>
     </View>
   );
@@ -22,13 +23,13 @@ export default ServiceCard;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
     padding: 15,
     marginHorizontal: 10,
     marginVertical: 5,
     justifyContent: 'space-between',
     alignItems: 'center',
     borderRadius: 10,
+    borderWidth: 1,
   },
   button: {
     backgroundColor: 'lightgray',

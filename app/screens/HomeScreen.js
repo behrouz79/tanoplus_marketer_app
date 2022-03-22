@@ -22,18 +22,8 @@ const HomeScreen = ({navigation}) => {
   return (
     <MainScreen style={styles.container}>
       <CustomText style={styles.title}>ابزارها</CustomText>
-      <View
-        style={{
-          flexDirection: 'column',
-          flex: 1,
-          maxHeight: '50%',
-        }}>
-        <View
-          style={{
-            flex: 2,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
+      <View style={styles.grid}>
+        <View style={styles.gridRow}>
           <TouchableOpacity
             style={[styles.cardContainer, {}]}
             onPress={() => navigation.navigate('CreateService')}>
@@ -43,7 +33,9 @@ const HomeScreen = ({navigation}) => {
               ایجاد حساب کاربری برای کسب و کارهای مختلف
             </CustomText>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.cardContainer, {}]}>
+          <TouchableOpacity
+            style={[styles.cardContainer, {}]}
+            onPress={() => navigation.navigate('SubScription')}>
             <Icon name="crown" size={40} color={Colors.title} />
             <CustomText style={styles.cardTitle}>اشتراک</CustomText>
             <CustomText style={styles.subTitle}>
@@ -51,15 +43,10 @@ const HomeScreen = ({navigation}) => {
             </CustomText>
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            flex: 2,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
+        <View style={styles.gridRow}>
           <TouchableOpacity
             style={[styles.cardContainer, {}]}
-            onPress={() => navigation.navigate('CreateService')}>
+            onPress={() => navigation.navigate('Suggestion')}>
             <Icon name="paper-plane" size={40} color={Colors.title} />
             <CustomText style={styles.cardTitle}>ارسال پیشنهاد</CustomText>
             <CustomText style={styles.subTitle}>
@@ -68,7 +55,7 @@ const HomeScreen = ({navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.cardContainer, {}]}
-            onPress={() => navigation.navigate('CreateService')}>
+            onPress={() => navigation.navigate('SuggestionDetails')}>
             <Icon name="info-circle" size={40} color={Colors.title} />
             <CustomText style={styles.cardTitle}>وضعیت پیشنهادات</CustomText>
             <CustomText style={styles.subTitle}>
@@ -86,9 +73,7 @@ const HomeScreen = ({navigation}) => {
         )}
         {isLoading && (
           <View>
-            <CustomText style={{alignSelf: 'center'}}>
-              دریافت اطلاعات
-            </CustomText>
+            <CustomText>دریافت اطلاعات</CustomText>
           </View>
         )}
         {data && (
@@ -145,5 +130,15 @@ const styles = StyleSheet.create({
   infoText: {
     fontWeight: 'bold',
     fontSize: 14,
+  },
+  grid: {
+    flexDirection: 'column',
+    flex: 1,
+    maxHeight: '50%',
+  },
+  gridRow: {
+    flex: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

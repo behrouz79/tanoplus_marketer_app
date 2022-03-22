@@ -1,10 +1,10 @@
 import React from 'react';
-import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import MainScreen from './shared/MainScreen';
 import {useQuery} from 'react-query';
 import {getSuggestions} from '../api/Profile';
-import ServiceCard from './ServiceCard';
 import SuggestionDetailCard from './cards/SuggestionDetailCard';
+import CustomText from './CustomText';
 
 const SuggestionDetails = () => {
   const {isLoading, error, data} = useQuery(
@@ -16,7 +16,7 @@ const SuggestionDetails = () => {
     <MainScreen>
       {isLoading && (
         <View>
-          <Text style={styles.text}>درحال بارگزاری</Text>
+          <CustomText style={styles.text}>درحال بارگزاری</CustomText>
         </View>
       )}
       {error && (
@@ -24,7 +24,6 @@ const SuggestionDetails = () => {
           <Text style={styles.text}>دریافت اطلاعات با خطا مواجه شد.</Text>
         </View>
       )}
-      {console.log(data)}
       {data ? (
         <FlatList
           data={data}
@@ -49,6 +48,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     fontSize: 15,
-    fontWeight: 'bold',
   },
 });

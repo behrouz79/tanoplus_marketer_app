@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import MainScreen from './shared/MainScreen';
-import {Alert, FlatList, StyleSheet, Text, View} from 'react-native';
+import {Alert, FlatList, StyleSheet, View} from 'react-native';
 import {useQuery} from 'react-query';
 import {buySubscription, getServices} from '../api/services';
 import ServiceCard from './ServiceCard';
 import SubScriptionModal from './modals/SubScriptionModal';
 import {customToast, LoadingToast, successToast} from '../utils/toasts';
 import Toast from 'react-native-tiny-toast';
+import CustomText from './CustomText';
 
 const SubScription = () => {
   const [services, setServices] = useState([]);
@@ -51,12 +52,14 @@ const SubScription = () => {
     <MainScreen style={styles.container}>
       {isLoading && (
         <View>
-          <Text style={styles.text}>درحال بارگزاری</Text>
+          <CustomText style={styles.text}>درحال بارگزاری</CustomText>
         </View>
       )}
       {error && (
         <View>
-          <Text style={styles.text}>دریافت اطلاعات با خطا مواجه شد.</Text>
+          <CustomText style={styles.text}>
+            دریافت اطلاعات با خطا مواجه شد.
+          </CustomText>
         </View>
       )}
       {services ? (
@@ -74,7 +77,7 @@ const SubScription = () => {
         />
       ) : (
         <View>
-          <Text style={styles.text}>سرویسی ثبت نشده.</Text>
+          <CustomText style={styles.text}>سرویسی ثبت نشده.</CustomText>
         </View>
       )}
       <SubScriptionModal
@@ -95,6 +98,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     fontSize: 15,
-    fontWeight: 'bold',
   },
 });

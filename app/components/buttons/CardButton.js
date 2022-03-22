@@ -1,13 +1,13 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import {Colors} from '../../constants/colors';
+import CustomText from '../CustomText';
 
-const CardButton = ({style, onPress, title, icon, description, children}) => {
+const CardButton = ({style, onPress, title, children}) => {
   return (
     <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
       {children}
-      {console.log(children)}
-      <Text style={styles.title}>{title}</Text>
+      <CustomText style={styles.title}>{title}</CustomText>
     </TouchableOpacity>
   );
 };

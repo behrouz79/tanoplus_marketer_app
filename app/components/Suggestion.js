@@ -1,7 +1,7 @@
 import React from 'react';
 import {CustomForm, CustomFormField, SubmitButton} from './forms';
 import {customToast, LoadingToast, successToast} from '../utils/toasts';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import MainScreen from './shared/MainScreen';
 import * as Yup from 'yup';
 import {sendSuggestion} from '../api/Profile';
@@ -37,32 +37,30 @@ const Suggestion = ({navigation}) => {
   };
 
   return (
-    <ScrollView>
-      <MainScreen style={styles.container}>
-        <CustomForm
-          initialValues={{subject: '', message: ''}}
-          onSubmit={values => sendMessage(values)}
-          validationSchema={validationSchema}>
-          <CustomFormField
-            placeholder="موضوع"
-            autoCorrect={false}
-            placeholderTextColor="royalblue"
-            name="subject"
-          />
-          <CustomFormField
-            placeholder="متن پیغام"
-            autoCorrect={false}
-            placeholderTextColor="royalblue"
-            name="message"
-            multiline={true}
-            numberOfLines={10}
-          />
-          <View style={{width: '60%'}}>
-            <SubmitButton title="ارسال" />
-          </View>
-        </CustomForm>
-      </MainScreen>
-    </ScrollView>
+    <MainScreen style={styles.container}>
+      <CustomForm
+        initialValues={{subject: '', message: ''}}
+        onSubmit={values => sendMessage(values)}
+        validationSchema={validationSchema}>
+        <CustomFormField
+          placeholder="موضوع"
+          autoCorrect={false}
+          placeholderTextColor="royalblue"
+          name="subject"
+        />
+        <CustomFormField
+          placeholder="متن پیغام"
+          autoCorrect={false}
+          placeholderTextColor="royalblue"
+          name="message"
+          multiline={true}
+          numberOfLines={10}
+        />
+        <View style={styles.submitButton}>
+          <SubmitButton title="ارسال" />
+        </View>
+      </CustomForm>
+    </MainScreen>
   );
 };
 
@@ -71,5 +69,8 @@ export default Suggestion;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+  },
+  submitButton: {
+    width: '90%',
   },
 });

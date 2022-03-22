@@ -1,26 +1,21 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  ImageBackground,
-  Text,
-} from 'react-native';
+import {StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
 import {useFormikContext} from 'formik';
-import { Colors } from "../../constants/colors";
+import CustomText from '../CustomText';
 
 const CustomImageInput = ({title, setImage, image, style, ...otherProps}) => {
   const {setFieldValue} = useFormikContext();
 
   const picker = async () => {
     if (image === '') {
-      let image = await ImagePicker.openPicker({
+      let new_image = await ImagePicker.openPicker({
         cropping: true,
         compressImageQuality: 0.5,
         includeBase64: true,
       });
-      setFieldValue(title, image);
-      setImage(image.path);
+      setFieldValue(title, new_image);
+      setImage(new_image.path);
     } else {
       setFieldValue(title, '');
       setImage('');
@@ -28,7 +23,10 @@ const CustomImageInput = ({title, setImage, image, style, ...otherProps}) => {
   };
 
   return (
-    <TouchableOpacity style={[styles.container, style]} onPress={picker} {...otherProps}>
+    <TouchableOpacity
+      style={[styles.container, style]}
+      onPress={picker}
+      {...otherProps}>
       <ImageBackground
         style={styles.bg}
         source={
@@ -38,7 +36,7 @@ const CustomImageInput = ({title, setImage, image, style, ...otherProps}) => {
               }
             : {uri: image}
         }>
-        <Text style={styles.title}>{title}</Text>
+        <CustomText style={styles.title}>{title}</CustomText>
       </ImageBackground>
     </TouchableOpacity>
   );
@@ -61,6 +59,5 @@ const styles = StyleSheet.create({
   title: {
     alignSelf: 'center',
     fontSize: 25,
-    fontWeight: 'bold',
   },
 });

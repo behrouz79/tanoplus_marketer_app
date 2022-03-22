@@ -11,7 +11,6 @@ import {
 import {
   ScrollView,
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   Dimensions,
@@ -168,15 +167,15 @@ const CreateService = ({navigation}) => {
           />
           <TouchableOpacity
             onPress={() => setCategoryVisible(!categoryVisible)}>
-            <Text style={styles.job}>
+            <CustomText style={styles.job}>
               {category.title}-{subCategory.title}
-            </Text>
+            </CustomText>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setProvinceVisible(!provinceVisible)}>
-            <Text style={styles.job}>
+            <CustomText style={styles.job}>
               {province.name}-{city.name}
-            </Text>
+            </CustomText>
           </TouchableOpacity>
           <CustomText style={styles.title}>بنر و لوگو</CustomText>
           <CustomImageFormField
@@ -184,29 +183,16 @@ const CreateService = ({navigation}) => {
             name="logo"
             image={logo}
             setImage={setLogo}
-            style={{
-              backgroundColor: Colors.lightGray,
-              borderRadius: 8,
-              height: 200,
-            }}
+            style={styles.logo}
           />
           <CustomImageFormField
             title="بنر"
             name="banner"
             image={banner}
             setImage={setBanner}
-            style={{
-              borderRadius:
-                Math.round(
-                  Dimensions.get('window').width +
-                    Dimensions.get('window').height,
-                ) / 2,
-              width: Dimensions.get('window').width * 0.5,
-              height: Dimensions.get('window').width * 0.5,
-              backgroundColor: Colors.lightGray,
-            }}
+            style={styles.banner}
           />
-          <View style={{width: '90%', alignSelf: 'center'}}>
+          <View style={styles.submitButton}>
             <SubmitButton title="ساخت سرویس" />
           </View>
           {categoryVisible && (
@@ -278,5 +264,23 @@ const styles = StyleSheet.create({
   title: {
     paddingHorizontal: 12,
     paddingVertical: 5,
+  },
+  submitButton: {
+    width: '90%',
+    alignSelf: 'center',
+  },
+  logo: {
+    backgroundColor: Colors.lightGray,
+    borderRadius: 8,
+    height: 200,
+  },
+  banner: {
+    borderRadius:
+      Math.round(
+        Dimensions.get('window').width + Dimensions.get('window').height,
+      ) / 2,
+    width: Dimensions.get('window').width * 0.5,
+    height: Dimensions.get('window').width * 0.5,
+    backgroundColor: Colors.lightGray,
   },
 });

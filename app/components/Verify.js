@@ -1,7 +1,7 @@
 import React from 'react';
 import {CustomForm, CustomFormField, SubmitButton} from '../components/forms';
 import * as Yup from 'yup';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {verify} from '../api/users';
 import Toast from 'react-native-tiny-toast';
 import {successToast, customToast, LoadingToast} from '../utils/toasts';
@@ -54,11 +54,11 @@ const Verify = ({userCode, setUserCode, navigation}) => {
           placeholderTextColor="royalblue"
           name="verify_code"
         />
-        <View style={{width: '60%'}}>
+        <View style={styles.submitButton}>
           <SubmitButton title="تایید کد" />
         </View>
       </CustomForm>
-      <View style={{width: '60%'}}>
+      <View style={styles.submitButton}>
         <CustomButton title="تغییر کد اختصاصی" onPress={() => setUserCode(0)} />
       </View>
     </>
@@ -66,3 +66,9 @@ const Verify = ({userCode, setUserCode, navigation}) => {
 };
 
 export default Verify;
+
+const styles = StyleSheet.create({
+  submitButton: {
+    width: '60%',
+  },
+});

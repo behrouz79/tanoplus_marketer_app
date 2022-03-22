@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
+import CustomText from '../CustomText';
 
 const ErrorMessage = ({error, visible}) => {
   if (!visible || !error) {
     return null;
   }
-  return <Text style={styles.error}>{error}</Text>;
+  return <CustomText style={styles.error}>{error}</CustomText>;
 };
 
 export default ErrorMessage;

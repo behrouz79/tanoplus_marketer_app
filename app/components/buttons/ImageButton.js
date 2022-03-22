@@ -1,20 +1,16 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  ImageBackground,
-  Text,
-} from 'react-native';
+import {StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
+import CustomText from '../CustomText';
 
 const ImageButton = ({title, setImage, image}) => {
   const picker = async () => {
     if (image == null) {
-      let image = await ImagePicker.openPicker({
+      let new_image = await ImagePicker.openPicker({
         cropping: true,
         compressImageQuality: 0.5,
       });
-      setImage(image.path);
+      setImage(new_image.path);
     } else {
       setImage(null);
     }
@@ -31,7 +27,7 @@ const ImageButton = ({title, setImage, image}) => {
               }
             : {uri: image}
         }>
-        <Text style={styles.title}>{title}</Text>
+        <CustomText style={styles.title}>{title}</CustomText>
       </ImageBackground>
     </TouchableOpacity>
   );
@@ -54,6 +50,5 @@ const styles = StyleSheet.create({
   title: {
     alignSelf: 'center',
     fontSize: 25,
-    fontWeight: 'bold',
   },
 });

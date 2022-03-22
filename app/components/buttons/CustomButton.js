@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Colors} from '../../constants/colors';
+import CustomText from '../CustomText';
 
 const CustomButton = ({
   title,
@@ -12,7 +13,7 @@ const CustomButton = ({
     <TouchableOpacity
       style={[styles.button, {backgroundColor: btnColor}]}
       onPress={onPress}>
-      <Text style={[styles.text, {color: textColor}]}>{title}</Text>
+      <CustomText style={[styles.text, {color: textColor}]}>{title}</CustomText>
     </TouchableOpacity>
   );
 };
@@ -33,7 +34,6 @@ const styles = StyleSheet.create({
     borderColor: Colors.primary,
   },
   text: {
-    fontFamily: 'Shabnam',
     fontSize: 14,
   },
 });

@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import CustomText from '../CustomText';
 
 const InfoCard = ({item}) => {
   return (
     <View style={styles.gridStyle}>
-      <Text style={styles.gridText}>{item.name}</Text>
-      <Text style={styles.gridText}>{item.value}</Text>
+      <CustomText style={styles.gridText}>{item.name}</CustomText>
+      <CustomText style={styles.gridText}>{item.value}</CustomText>
     </View>
   );
 };

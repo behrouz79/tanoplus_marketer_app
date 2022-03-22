@@ -3,10 +3,10 @@ import {
   Modal,
   Pressable,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import CustomText from '../CustomText';
 
 const SubScriptionModal = ({visible, setVisible, onPressButton}) => {
   return (
@@ -23,18 +23,18 @@ const SubScriptionModal = ({visible, setVisible, onPressButton}) => {
             <TouchableOpacity
               onPress={() => onPressButton('3 ماهه', 5)}
               style={styles.title}>
-              <Text style={styles.modalText}>3 ماهه</Text>
+              <CustomText style={styles.modalText}>3 ماهه</CustomText>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => onPressButton('6 ماهه', 3)}>
-              <Text style={styles.modalText}>6 ماهه</Text>
+              <CustomText style={styles.modalText}>6 ماهه</CustomText>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => onPressButton('12 ماهه', 4)}>
-              <Text style={styles.modalText}>12 ماهه</Text>
+              <CustomText style={styles.modalText}>12 ماهه</CustomText>
             </TouchableOpacity>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setVisible(!visible)}>
-              <Text style={styles.textStyle}>بستن دسته بندی</Text>
+              <CustomText style={styles.textStyle}>بستن دسته بندی</CustomText>
             </Pressable>
           </View>
         </View>
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: 'white',
-    fontWeight: 'bold',
     textAlign: 'center',
   },
   modalText: {
@@ -87,7 +86,6 @@ const styles = StyleSheet.create({
     minWidth: '100%',
     borderRadius: 15,
     fontSize: 15,
-    fontWeight: 'bold',
   },
   title: {
     alignSelf: 'center',
