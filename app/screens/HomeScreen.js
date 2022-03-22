@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
     marginLeft: 24,
     color: Colors.title,
     fontSize: 14,
-    fontWeight: 'bold',
   },
   cardContainer: {
     padding: 15,
@@ -112,7 +111,6 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 15,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
   information: {
@@ -128,7 +126,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   infoText: {
-    fontWeight: 'bold',
     fontSize: 14,
   },
   grid: {

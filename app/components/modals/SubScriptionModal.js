@@ -90,6 +90,5 @@ const styles = StyleSheet.create({
   title: {
     alignSelf: 'center',
     fontSize: 25,
-    fontWeight: 'bold',
   },
 });

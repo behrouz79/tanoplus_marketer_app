@@ -4,7 +4,6 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View,
@@ -25,9 +24,7 @@ const CustomModal = ({
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    {
-      data && setShowData(data);
-    }
+    data && setShowData(data);
   }, [data]);
 
   const filter = () => {
@@ -132,7 +129,6 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: 'white',
-    fontWeight: 'bold',
     textAlign: 'center',
   },
   modalText: {
@@ -141,12 +137,10 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
     fontSize: 15,
-    fontWeight: 'bold',
   },
   title: {
     alignSelf: 'center',
     fontSize: 25,
-    fontWeight: 'bold',
   },
   input: {
     marginVertical: 5,
