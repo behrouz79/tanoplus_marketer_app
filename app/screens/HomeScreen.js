@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, FlatList, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, FlatList, View} from 'react-native';
 import MainScreen from '../components/shared/MainScreen';
-import CustomText from '../components/CustomText';
+import CustomText from '../components/shared/CustomText';
 import {Colors} from '../constants/colors';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useQuery} from 'react-query';
 import {getProfileDta} from '../api/Profile';
+import CustomTextBold from '../components/shared/CustomTextBold';
+import CardButton from '../components/buttons/CardButton';
 
 const HomeScreen = ({navigation}) => {
   const {isLoading, error, data} = useQuery('ProfileData', getProfileDta);
@@ -13,76 +14,68 @@ const HomeScreen = ({navigation}) => {
   const info = ({item}) => {
     return (
       <View style={styles.infoCard}>
-        <CustomText style={styles.infoText}>{item.name}</CustomText>
-        <CustomText style={styles.infoText}>{item.value}</CustomText>
+        <CustomTextBold style={styles.infoText}>{item.name} :</CustomTextBold>
+        <CustomTextBold style={styles.infoText}>{item.value}</CustomTextBold>
       </View>
     );
   };
 
   return (
     <MainScreen style={styles.container}>
-      <CustomText style={styles.title}>ابزارها</CustomText>
+      <CustomTextBold style={styles.title}>ابزارها</CustomTextBold>
       <View style={styles.grid}>
         <View style={styles.gridRow}>
-          <TouchableOpacity
-            style={[styles.cardContainer, {}]}
-            onPress={() => navigation.navigate('CreateService')}>
-            <Icon name="shopping-bag" size={40} color={Colors.title} />
-            <CustomText style={styles.cardTitle}>ساخت سرویس</CustomText>
-            <CustomText style={styles.subTitle}>
-              ایجاد حساب کاربری برای کسب و کارهای مختلف
-            </CustomText>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.cardContainer, {}]}
-            onPress={() => navigation.navigate('SubScription')}>
-            <Icon name="crown" size={40} color={Colors.title} />
-            <CustomText style={styles.cardTitle}>اشتراک</CustomText>
-            <CustomText style={styles.subTitle}>
-              خرید اشتراک برای کسب و کارها
-            </CustomText>
-          </TouchableOpacity>
+          <CardButton
+            icon="shopping-bag"
+            title="ساخت سرویس"
+            onPress={() => navigation.navigate('CreateService')}
+            description="ایجاد حساب کاربری برای کسب و کارهای مختلف"
+          />
+          <CardButton
+            icon="crown"
+            title="اشتراک"
+            onPress={() => navigation.navigate('SubScription')}
+            description="خرید اشتراک برای کسب و کارها"
+          />
         </View>
         <View style={styles.gridRow}>
-          <TouchableOpacity
-            style={[styles.cardContainer, {}]}
-            onPress={() => navigation.navigate('Suggestion')}>
-            <Icon name="paper-plane" size={40} color={Colors.title} />
-            <CustomText style={styles.cardTitle}>ارسال پیشنهاد</CustomText>
-            <CustomText style={styles.subTitle}>
-              ارسال پیشنهاد خود جهت بهبود برنامه یا گزارش باگ در برنامه
-            </CustomText>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.cardContainer, {}]}
-            onPress={() => navigation.navigate('SuggestionDetails')}>
-            <Icon name="info-circle" size={40} color={Colors.title} />
-            <CustomText style={styles.cardTitle}>وضعیت پیشنهادات</CustomText>
-            <CustomText style={styles.subTitle}>
-              پیگیری پیشنهادات ارسالی خود به تیم پشتیبانی
-            </CustomText>
-          </TouchableOpacity>
+          <CardButton
+            icon="paper-plane"
+            title="ارسال پیشنهاد"
+            onPress={() => navigation.navigate('Suggestion')}
+            description="ارسال پیشنهاد خود جهت بهبود برنامه یا گزارش باگ در برنامه"
+          />
+          <CardButton
+            icon="info-circle"
+            title="وضعیت پیشنهادات"
+            onPress={() => navigation.navigate('SuggestionDetails')}
+            description="پیگیری پیشنهادات ارسالی خود به تیم پشتیبانی"
+          />
         </View>
       </View>
-      <CustomText style={styles.title}>اطلاعات حساب کاربری</CustomText>
-      <View style={styles.information}>
-        {error && (
-          <View>
-            <CustomText>خطا در دریافت اطلاعات</CustomText>
-          </View>
-        )}
-        {isLoading && (
-          <View>
-            <CustomText>دریافت اطلاعات</CustomText>
-          </View>
-        )}
-        {data && (
-          <FlatList
-            data={data}
-            renderItem={info}
-            keyExtractor={(item, index) => index}
-          />
-        )}
+      <CustomTextBold style={styles.title}>اطلاعات حساب کاربری</CustomTextBold>
+      <View style={styles.informationContainer}>
+        <View style={styles.information}>
+          <View style={{paddingTop: 8}}></View>
+          {error && (
+            <View>
+              <CustomText>خطا در دریافت اطلاعات</CustomText>
+            </View>
+          )}
+          {isLoading && (
+            <View>
+              <CustomText>دریافت اطلاعات</CustomText>
+            </View>
+          )}
+          {data && (
+            <FlatList
+              data={data}
+              renderItem={info}
+              keyExtractor={(item, index) => index}
+            />
+          )}
+          <View style={{paddingBottom: 8}}></View>
+        </View>
       </View>
     </MainScreen>
   );
@@ -91,39 +84,30 @@ const HomeScreen = ({navigation}) => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    textAlign: 'center',
-  },
   title: {
+    marginTop: 32,
     marginLeft: 24,
     color: Colors.title,
     fontSize: 14,
   },
-  cardContainer: {
-    padding: 15,
-    margin: 10,
-    backgroundColor: Colors.lightGray,
-    borderRadius: 8,
-    width: '50%',
-    flex: 2,
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-  },
-  cardTitle: {
-    fontSize: 15,
+  container: {
     textAlign: 'center',
+  },
+  informationContainer: {
+    flex: 1,
   },
   information: {
     backgroundColor: Colors.lightGray,
-    flex: 1,
-    marginHorizontal: 10,
-    marginVertical: 5,
     borderRadius: 8,
+    marginHorizontal: 24,
+    marginVertical: 5,
+    minHeight: 50,
   },
   infoCard: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 5,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    marginVertical: 8,
   },
   infoText: {
     fontSize: 14,
@@ -132,6 +116,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
     maxHeight: '50%',
+    marginHorizontal: 16,
   },
   gridRow: {
     flex: 2,

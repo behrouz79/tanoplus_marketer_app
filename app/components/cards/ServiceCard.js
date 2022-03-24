@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
-import CustomText from './CustomText';
+import CustomText from '../shared/CustomText';
 
 const ServiceCard = ({item, modalVisible, setModalVisible, setSelected}) => {
   return (

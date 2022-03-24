@@ -1,7 +1,7 @@
 import React from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
 import {StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
-import CustomText from '../CustomText';
+import CustomText from '../shared/CustomText';
 
 const ImageButton = ({title, setImage, image}) => {
   const picker = async () => {

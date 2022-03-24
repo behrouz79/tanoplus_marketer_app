@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import CustomText from '../CustomText';
+import CustomText from '../shared/CustomText';
 
 const InfoCard = ({item}) => {
   return (

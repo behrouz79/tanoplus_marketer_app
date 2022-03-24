@@ -21,8 +21,9 @@ import {CustomForm, CustomFormField, SubmitButton} from './forms';
 import CustomModal from './modals/CustomModal';
 import {customToast, LoadingToast, successToast} from '../utils/toasts';
 import Toast from 'react-native-tiny-toast';
-import CustomText from './CustomText';
+import CustomText from './shared/CustomText';
 import {Colors} from '../constants/colors';
+import CustomTextBold from "./shared/CustomTextBold";
 
 const CreateService = ({navigation}) => {
   const [logo, setLogo] = useState('');
@@ -138,7 +139,7 @@ const CreateService = ({navigation}) => {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}>
         <ScrollView>
-          <CustomText style={styles.title}>اطلاعات شخصی</CustomText>
+          <CustomTextBold style={styles.title}>اطلاعات شخصی</CustomTextBold>
           <CustomFormField
             placeholder="موبایل"
             autoCorrect={false}
@@ -158,7 +159,7 @@ const CreateService = ({navigation}) => {
             placeholderTextColor={Colors.gray}
             name="family"
           />
-          <CustomText style={styles.title}>اطلاعات شغلی</CustomText>
+          <CustomTextBold style={styles.title}>اطلاعات شغلی</CustomTextBold>
           <CustomFormField
             placeholder="نام برند (کسب وکار/خدمات)"
             autoCorrect={false}
@@ -177,20 +178,20 @@ const CreateService = ({navigation}) => {
               {province.name}-{city.name}
             </CustomText>
           </TouchableOpacity>
-          <CustomText style={styles.title}>بنر و لوگو</CustomText>
+          <CustomTextBold style={styles.title}>بنر و لوگو</CustomTextBold>
+          <CustomText style={styles.subTitle}>بنر</CustomText>
           <CustomImageFormField
-            title="لوگو"
-            name="logo"
-            image={logo}
-            setImage={setLogo}
-            style={styles.logo}
-          />
-          <CustomImageFormField
-            title="بنر"
             name="banner"
             image={banner}
             setImage={setBanner}
             style={styles.banner}
+          />
+          <CustomText style={styles.subTitle}>لوگو</CustomText>
+          <CustomImageFormField
+            name="logo"
+            image={logo}
+            setImage={setLogo}
+            style={styles.logo}
           />
           <View style={styles.submitButton}>
             <SubmitButton title="ساخت سرویس" />
@@ -265,16 +266,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 5,
   },
+  subTitle: {
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+  },
   submitButton: {
     width: '90%',
     alignSelf: 'center',
   },
   logo: {
-    backgroundColor: Colors.lightGray,
-    borderRadius: 8,
-    height: 200,
-  },
-  banner: {
     borderRadius:
       Math.round(
         Dimensions.get('window').width + Dimensions.get('window').height,
@@ -282,5 +282,10 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width * 0.5,
     height: Dimensions.get('window').width * 0.5,
     backgroundColor: Colors.lightGray,
+  },
+  banner: {
+    backgroundColor: Colors.lightGray,
+    borderRadius: 8,
+    height: 200,
   },
 });

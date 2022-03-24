@@ -8,9 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import CustomText from '../CustomText';
+import CustomText from '../shared/CustomText';
 import {Colors} from '../../constants/colors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import CustomTextBold from '../shared/CustomTextBold';
 
 const CustomModal = ({
   visible,
@@ -51,7 +52,7 @@ const CustomModal = ({
         style={[styles.centeredView, {backgroundColor: Colors.opacityMode}]}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <CustomText>{title}</CustomText>
+            <CustomTextBold>{title}</CustomTextBold>
             <TextInput
               placeholder="جستجو"
               style={styles.input}
@@ -63,7 +64,11 @@ const CustomModal = ({
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={onPressClose}>
-              <CustomText style={styles.textStyle}>X</CustomText>
+              <Icon
+                name="long-arrow-alt-right"
+                size={30}
+                style={styles.textStyle}
+              />
             </Pressable>
             <ScrollView style={{marginBottom: 20}}>
               {showData ? (
@@ -120,15 +125,13 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2,
   },
   buttonClose: {
     position: 'absolute',
-    top: 10,
+    top: 5,
     left: 10,
   },
   textStyle: {
-    color: 'white',
     textAlign: 'center',
   },
   modalText: {

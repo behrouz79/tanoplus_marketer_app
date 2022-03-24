@@ -6,8 +6,9 @@ import Toast from 'react-native-tiny-toast';
 import {successToast, customToast, LoadingToast} from '../utils/toasts';
 import * as Yup from 'yup';
 import {Colors} from '../constants/colors';
-import CustomText from './CustomText';
+import CustomText from './shared/CustomText';
 import MainScreen from './shared/MainScreen';
+import CustomTextBold from './shared/CustomTextBold';
 
 const validationSchema = Yup.object().shape({
   user_code: Yup.string()
@@ -38,7 +39,7 @@ const Login = ({setUserCode}) => {
 
   return (
     <MainScreen style={styles.container}>
-      <CustomText style={styles.title}>سلام رفیق</CustomText>
+      <CustomTextBold style={styles.title}>سلام رفیق</CustomTextBold>
       <CustomText style={styles.subTitle}>
         برای وارد شدن لطفا کد بازاریابی خود را وارد کن
       </CustomText>

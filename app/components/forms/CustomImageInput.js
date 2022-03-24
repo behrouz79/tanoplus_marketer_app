@@ -2,8 +2,9 @@ import React from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
 import {StyleSheet, TouchableOpacity, ImageBackground} from 'react-native';
 import {useFormikContext} from 'formik';
-import CustomText from '../CustomText';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import CustomText from '../shared/CustomText';
+import {Colors} from '../../constants/colors';
 const CustomImageInput = ({title, setImage, image, style, ...otherProps}) => {
   const {setFieldValue} = useFormikContext();
 
@@ -36,7 +37,12 @@ const CustomImageInput = ({title, setImage, image, style, ...otherProps}) => {
               }
             : {uri: image}
         }>
-        <CustomText style={styles.title}>{title}</CustomText>
+        <Icon
+          name="edit"
+          size={30}
+          color={Colors.primary}
+          style={styles.title}
+        />
       </ImageBackground>
     </TouchableOpacity>
   );

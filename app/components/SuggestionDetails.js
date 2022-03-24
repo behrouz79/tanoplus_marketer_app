@@ -4,7 +4,7 @@ import MainScreen from './shared/MainScreen';
 import {useQuery} from 'react-query';
 import {getSuggestions} from '../api/Profile';
 import SuggestionDetailCard from './cards/SuggestionDetailCard';
-import CustomText from './CustomText';
+import CustomText from './shared/CustomText';
 
 const SuggestionDetails = () => {
   const {isLoading, error, data} = useQuery(

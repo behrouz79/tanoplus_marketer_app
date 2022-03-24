@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import CustomText from '../CustomText';
+import CustomText from '../shared/CustomText';
 
 const SubScriptionModal = ({visible, setVisible, onPressButton}) => {
   return (

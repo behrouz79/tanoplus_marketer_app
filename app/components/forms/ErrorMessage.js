@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import CustomText from '../CustomText';
+import CustomText from '../shared/CustomText';
 
 const ErrorMessage = ({error, visible}) => {
   if (!visible || !error) {

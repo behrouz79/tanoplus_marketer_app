@@ -3,11 +3,11 @@ import MainScreen from './shared/MainScreen';
 import {Alert, FlatList, StyleSheet, View} from 'react-native';
 import {useQuery} from 'react-query';
 import {buySubscription, getServices} from '../api/services';
-import ServiceCard from './ServiceCard';
+import ServiceCard from './cards/ServiceCard';
 import SubScriptionModal from './modals/SubScriptionModal';
 import {customToast, LoadingToast, successToast} from '../utils/toasts';
 import Toast from 'react-native-tiny-toast';
-import CustomText from './CustomText';
+import CustomText from './shared/CustomText';
 
 const SubScription = () => {
   const [services, setServices] = useState([]);

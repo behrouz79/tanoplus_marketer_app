@@ -1,16 +1,16 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
-import {Colors} from '../constants/colors';
+import {Colors} from '../../constants/colors';
 
-const CustomText = ({style, children}) => {
+const CustomTextBold = ({style, children}) => {
   return <Text style={[styles.text, style]}>{children}</Text>;
 };
 
-export default CustomText;
+export default CustomTextBold;
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'Shabnam',
+    fontFamily: 'Shabnam-Bold',
     color: Colors.title,
   },
 });

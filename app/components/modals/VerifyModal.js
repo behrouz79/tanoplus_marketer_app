@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
-import CustomText from '../CustomText';
+import CustomText from '../shared/CustomText';
 import {Colors} from '../../constants/colors';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import CustomButton from '../buttons/CustomButton';
@@ -8,6 +8,7 @@ import {verify} from '../../api/users';
 import Toast from 'react-native-tiny-toast';
 import {customToast, successToast} from '../../utils/toasts';
 import {setToken} from '../../utils/jwt';
+import CustomTextBold from '../shared/CustomTextBold';
 
 const VerifyModal = ({userCode, setVisible, navigation}) => {
   const [code, setCode] = useState('');
@@ -39,7 +40,7 @@ const VerifyModal = ({userCode, setVisible, navigation}) => {
     <Modal animationType="slide" transparent={true}>
       <View style={{flex: 1, backgroundColor: Colors.opacityMode}} />
       <View style={styles.modalView}>
-        <CustomText style={styles.title}>فقط یه قدم دیگه</CustomText>
+        <CustomTextBold style={styles.title}>فقط یه قدم دیگه</CustomTextBold>
         <CustomText style={styles.subTitle}>
           کد ارسال شده به تلفن همراه خود را وارد کنید
         </CustomText>
