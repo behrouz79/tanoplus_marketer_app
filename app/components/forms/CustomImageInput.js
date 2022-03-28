@@ -16,6 +16,7 @@ const CustomImageInput = ({title, setImage, image, style, ...otherProps}) => {
         includeBase64: true,
       });
       setFieldValue(title, new_image);
+      console.log(title);
       setImage(new_image.path);
     } else {
       setFieldValue(title, '');

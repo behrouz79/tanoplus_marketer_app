@@ -23,7 +23,7 @@ import {customToast, LoadingToast, successToast} from '../utils/toasts';
 import Toast from 'react-native-tiny-toast';
 import CustomText from './shared/CustomText';
 import {Colors} from '../constants/colors';
-import CustomTextBold from "./shared/CustomTextBold";
+import CustomTextBold from './shared/CustomTextBold';
 
 const CreateService = ({navigation}) => {
   const [logo, setLogo] = useState('');

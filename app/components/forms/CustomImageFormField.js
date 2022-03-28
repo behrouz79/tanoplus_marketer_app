@@ -8,6 +8,7 @@ const CustomImageFormField = ({name, style, ...otherProps}) => {
   return (
     <>
       <CustomImageInput
+        title={name}
         style={style}
         onBlur={() => setFieldTouched(name)}
         {...otherProps}
