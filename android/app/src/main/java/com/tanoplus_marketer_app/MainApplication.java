@@ -1,5 +1,5 @@
 package com.tanoplus_marketer_app;
-
+import com.facebook.react.modules.i18nmanager.I18nUtil;
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
@@ -45,6 +45,9 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+    I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
+    sharedI18nUtilInstance.forceRTL(this,true);
+    sharedI18nUtilInstance.allowRTL(this, true);
   }
 
   /**
