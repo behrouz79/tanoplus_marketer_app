@@ -20,15 +20,29 @@ const SubScriptionModal = ({visible, setVisible, onPressButton}) => {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <CustomText>رایگان</CustomText>
             <TouchableOpacity
-              onPress={() => onPressButton('3 ماهه', 5)}
+              onPress={() => onPressButton('3 ماهه', 5, false)}
               style={styles.title}>
               <CustomText style={styles.modalText}>3 ماهه</CustomText>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => onPressButton('6 ماهه', 3)}>
+            <TouchableOpacity onPress={() => onPressButton('6 ماهه', 3, false)}>
               <CustomText style={styles.modalText}>6 ماهه</CustomText>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => onPressButton('12 ماهه', 4)}>
+            <TouchableOpacity
+              onPress={() => onPressButton('12 ماهه', 4, false)}>
+              <CustomText style={styles.modalText}>12 ماهه</CustomText>
+            </TouchableOpacity>
+            <CustomText>پرداخت</CustomText>
+            <TouchableOpacity
+              onPress={() => onPressButton('3 ماهه', 5, true)}
+              style={styles.title}>
+              <CustomText style={styles.modalText}>3 ماهه</CustomText>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => onPressButton('6 ماهه', 3, true)}>
+              <CustomText style={styles.modalText}>6 ماهه</CustomText>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => onPressButton('12 ماهه', 4, true)}>
               <CustomText style={styles.modalText}>12 ماهه</CustomText>
             </TouchableOpacity>
             <Pressable

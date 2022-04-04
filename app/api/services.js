@@ -62,11 +62,15 @@ export const getServices = async () => {
   }
 };
 
-export const buySubscription = async (service_id, subscription_id) => {
+export const buySubscription = async (service_id, subscription_id, pay_now) => {
   try {
     return await http.post(
       `${http.url}/marketer/service/buy/`,
-      {service_id: service_id, subscription_id: subscription_id},
+      {
+        service_id: service_id,
+        subscription_id: subscription_id,
+        pay_now: pay_now,
+      },
       {
         headers: {
           Authorization: `Bearer ${await token()}`,

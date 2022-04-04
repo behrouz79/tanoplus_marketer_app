@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import MainScreen from './shared/MainScreen';
-import {Alert, FlatList, StyleSheet, View} from 'react-native';
+import {Alert, FlatList, StyleSheet, View, Button, Linking} from 'react-native';
 import {useQuery} from 'react-query';
 import {buySubscription, getServices} from '../api/services';
 import ServiceCard from './cards/ServiceCard';
@@ -8,6 +8,10 @@ import SubScriptionModal from './modals/SubScriptionModal';
 import {customToast, LoadingToast, successToast} from '../utils/toasts';
 import Toast from 'react-native-tiny-toast';
 import CustomText from './shared/CustomText';
+
+const OpenURLButton = async url => {
+  await Linking.openURL(url);
+};
 
 const SubScription = () => {
   const [services, setServices] = useState([]);
@@ -19,7 +23,7 @@ const SubScription = () => {
     setServices(data?.data);
   }, [data]);
 
-  const showConfirmDialog = (service, subscription_id) => {
+  const showConfirmDialog = (service, subscription_id, pay_now) => {
     return Alert.alert(
       'از خرید اشتراک مطمئن هستید؟',
       `شما در حال خرید سرویس ${service} هستید.`,
@@ -29,13 +33,16 @@ const SubScription = () => {
           onPress: () => {
             setModalVisible(!modalVisible);
             LoadingToast('اجرای درخواست ...');
-            buySubscription(selected, subscription_id).then(
-              ({data: {message, status}}) => {
+            buySubscription(selected, subscription_id, pay_now).then(
+              ({data: {message, status, link}}) => {
                 Toast.hide();
                 if (status === 200) {
                   successToast(message);
                 } else {
                   customToast(message);
+                }
+                if (link) {
+                  OpenURLButton(link);
                 }
               },
             );
