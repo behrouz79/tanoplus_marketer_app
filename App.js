@@ -9,6 +9,7 @@ import IndexRoutes from './app/routes/IndexRoutes';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import Firebase from '@react-native-firebase/app';
+import linking from './linking';
 
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);
@@ -34,7 +35,7 @@ const App = () => {
   }, []);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <QueryClientProvider client={queryClient}>
         <Stack.Navigator
           screenOptions={{
