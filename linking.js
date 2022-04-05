@@ -1,12 +1,7 @@
 const config = {
   screens: {
-    SubScription: {
-      path: 'SubScription/:id',
-      parse: {
-        id: id => `${id}`,
-      },
+    SubScription: 'SubScription',
     },
-  },
 };
 
 const linking = {
