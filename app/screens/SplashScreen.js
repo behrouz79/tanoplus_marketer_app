@@ -5,31 +5,35 @@ import {checkToken} from '../utils/jwt';
 import NetInfo from '@react-native-community/netinfo';
 import {getUserState} from '../api/Profile';
 
-const confirmationAlert = () => {
-  return Alert.alert(
-    'دسترسی به اینترنت',
-    'برای استفاده از برنامه باید به اینترنت متصل باشید.',
-    [
-      {
-        text: 'باشه',
-        onPress: BackHandler.exitApp,
-      },
-      {cancelable: false},
-    ],
-  );
+const confirmationAlert = message => {
+  return Alert.alert('دسترسی به اینترنت', message, [
+    {
+      text: 'باشه',
+      onPress: BackHandler.exitApp,
+    },
+    {cancelable: false},
+  ]);
 };
 
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      getUserState().then(r => !r && BackHandler.exitApp());
+      getUserState().then(
+        r =>
+          !r &&
+          confirmationAlert(
+            'حساب کاربری شما غیرفعال شده است.برای اطلاع بیشتر با پشتیبانی تماس بگیرید.',
+          ),
+      );
       NetInfo.fetch().then(state => {
         if (state.isConnected) {
           checkToken().then(value => {
             value ? navigation.replace('Home') : navigation.replace('Login');
           });
         } else {
-          confirmationAlert();
+          confirmationAlert(
+            'برای استفاده از برنامه باید به اینترنت متصل باشید.',
+          );
         }
       });
     }, 2000);
