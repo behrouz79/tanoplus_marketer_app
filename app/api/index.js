@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'https://api.tanoplus.com';
+const url = 'https://tanoplus.com/api';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 

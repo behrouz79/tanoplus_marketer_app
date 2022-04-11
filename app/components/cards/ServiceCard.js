@@ -6,6 +6,7 @@ const ServiceCard = ({item, modalVisible, setModalVisible, setSelected}) => {
   return (
     <View style={styles.container}>
       <CustomText>{item.name}</CustomText>
+      <CustomText>انقضا: {item.expire_time/86400} روز</CustomText>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {

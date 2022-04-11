@@ -1,11 +1,16 @@
 const config = {
   screens: {
-    SubScription: 'SubScription',
+    Index: {
+      screens: {
+        initialRoute: 'Home',
+        SubScription: 'SubScription/:order_id',
+      },
     },
+  },
 };
 
 const linking = {
-  prefixes: ['marketer://api.tanoplus.com'],
+  prefixes: ['marketer://api.tanoplus.com/'],
   config,
 };
 

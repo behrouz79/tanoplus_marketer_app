@@ -56,7 +56,7 @@ const HomeScreen = ({navigation}) => {
       <CustomTextBold style={styles.title}>اطلاعات حساب کاربری</CustomTextBold>
       <View style={styles.informationContainer}>
         <View style={styles.information}>
-          <View style={{paddingTop: 8}}></View>
+          <View style={{paddingTop: 8}} />
           {error && (
             <View>
               <CustomText>خطا در دریافت اطلاعات</CustomText>
@@ -74,7 +74,7 @@ const HomeScreen = ({navigation}) => {
               keyExtractor={(item, index) => index}
             />
           )}
-          <View style={{paddingBottom: 8}}></View>
+          <View style={{paddingBottom: 8}} />
         </View>
       </View>
     </MainScreen>

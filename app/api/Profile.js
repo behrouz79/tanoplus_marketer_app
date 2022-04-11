@@ -43,3 +43,30 @@ export const getProfileDta = async () => {
     console.log(e);
   }
 };
+
+export const getPositionData = async () => {
+  try {
+    const {data} = await http.get(`${http.url}/marketer/position/info/`, {
+      headers: {
+        Authorization: `Bearer ${await token()}`,
+      },
+    });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getUserState = async () => {
+  try {
+    const {data} = await http.get(`${http.url}/marketer/checkstate/`, {
+      headers: {
+        Authorization: `Bearer ${await token()}`,
+      },
+    });
+    return true;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};

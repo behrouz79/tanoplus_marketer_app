@@ -3,6 +3,7 @@ import MainScreen from '../components/shared/MainScreen';
 import {Alert, BackHandler, Image, StyleSheet} from 'react-native';
 import {checkToken} from '../utils/jwt';
 import NetInfo from '@react-native-community/netinfo';
+import {getUserState} from '../api/Profile';
 
 const confirmationAlert = () => {
   return Alert.alert(
@@ -21,10 +22,11 @@ const confirmationAlert = () => {
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
+      getUserState().then(r => !r && BackHandler.exitApp());
       NetInfo.fetch().then(state => {
         if (state.isConnected) {
           checkToken().then(value => {
-            value ? navigation.replace('Index') : navigation.replace('Login');
+            value ? navigation.replace('Home') : navigation.replace('Login');
           });
         } else {
           confirmationAlert();
