@@ -6,7 +6,7 @@ import NetInfo from '@react-native-community/netinfo';
 import {getUserState} from '../api/Profile';
 
 const confirmationAlert = message => {
-  return Alert.alert('دسترسی به اینترنت', message, [
+  return Alert.alert('مشکلی پیش آمده!', message, [
     {
       text: 'باشه',
       onPress: BackHandler.exitApp,
@@ -18,13 +18,12 @@ const confirmationAlert = message => {
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      getUserState().then(
-        r =>
-          !r &&
+      getUserState().then(r => {
+        !r.result === 'no' &&
           confirmationAlert(
             'حساب کاربری شما غیرفعال شده است.برای اطلاع بیشتر با پشتیبانی تماس بگیرید.',
-          ),
-      );
+          );
+      });
       NetInfo.fetch().then(state => {
         if (state.isConnected) {
           checkToken().then(value => {

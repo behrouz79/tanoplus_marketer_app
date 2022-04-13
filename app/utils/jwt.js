@@ -11,6 +11,16 @@ export const checkToken = async () => {
   }
 };
 
+export const getUserId = async () => {
+  let token = await getToken();
+  if (token) {
+    const data = jwt(token);
+    return data.user_id;
+  } else {
+    return 0;
+  }
+};
+
 export const getToken = async () => {
   return await AsyncStorage.getItem('token');
 };
