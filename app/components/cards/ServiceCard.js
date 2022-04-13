@@ -1,12 +1,44 @@
-import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+  Modal,
+} from 'react-native';
 import CustomText from '../shared/CustomText';
 
 const ServiceCard = ({item, modalVisible, setModalVisible, setSelected}) => {
+  const [phoneVisible, setPhoneVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <CustomText>{item.name}</CustomText>
-      <CustomText>انقضا: {item.expire_time/86400} روز</CustomText>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={phoneVisible}
+        onRequestClose={() => {
+          setModalVisible(!setPhoneVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <CustomText style={styles.modalText}>{item.phone}</CustomText>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setPhoneVisible(!phoneVisible)}>
+              <CustomText style={styles.textStyle}>X</CustomText>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          setSelected(item.id);
+          setModalVisible(!modalVisible);
+        }}>
+        <CustomText>{item.name}</CustomText>
+      </TouchableOpacity>
+      <CustomText>انقضا: {item.expire_time / 86400} روز</CustomText>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
