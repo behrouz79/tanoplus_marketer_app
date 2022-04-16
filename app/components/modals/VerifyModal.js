@@ -22,7 +22,7 @@ const VerifyModal = ({userCode, setVisible, navigation}) => {
         if (data.status === 200) {
           successToast(data.message);
           await setToken(data.state);
-          navigation.replace('Index');
+          navigation.replace('Home');
         } else if (data.status === 406) {
           customToast(data.message);
         } else if (data.status === 409) {

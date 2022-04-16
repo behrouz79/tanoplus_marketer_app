@@ -60,7 +60,24 @@ export const getPositionData = async () => {
 export const getUserState = async () => {
   try {
     const {data} = await http.get(
-      `${http.url}/marketer/checkstate/${await getUserId}`,
+      `${http.url}/marketer/checkstate/${await getUserId()}`,
+    );
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const checkAppVersion = async version => {
+  try {
+    const {data} = await http.post(
+      `${http.url}/marketer/app/version/`,
+      JSON.stringify({version: version}),
+      {
+        headers: {
+          Authorization: `Bearer ${await token()}`,
+        },
+      },
     );
     return data;
   } catch (e) {

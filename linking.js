@@ -1,9 +1,15 @@
 const config = {
   screens: {
-    Index: {
+    Home: {
       screens: {
-        initialRoute: 'Home',
-        SubScription: 'SubScription/:order_id',
+        Index: {
+          initialRouteName: 'Index',
+          screens: {
+            SubScription: {
+              path: 'subscription/:order_id',
+            },
+          },
+        },
       },
     },
   },

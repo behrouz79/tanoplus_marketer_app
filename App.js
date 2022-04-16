@@ -10,7 +10,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import Firebase from '@react-native-firebase/app';
 import linking from './linking';
-import TabNavigator from "./app/routes/TabNavigator";
+import TabNavigator from './app/routes/TabNavigator';
 
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);

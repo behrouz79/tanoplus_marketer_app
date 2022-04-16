@@ -16,6 +16,7 @@ const OpenURLButton = async url => {
 
 const GetOrderStatus = async id => {
   await orderStatus(id).then(data => {
+    console.log(data)
     customToast(`${data.is_paid ? 'تراکنش موفق بود.' : 'تراکنش ناموفق بود.'}`);
   });
 };

@@ -13,7 +13,6 @@ const TabNavigator = () => {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
-
           if (route.name === 'Index') {
             iconName = focused ? 'calendar-alt' : 'calendar-alt';
           } else if (route.name === 'MoreInfo') {

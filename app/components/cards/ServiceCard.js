@@ -7,47 +7,37 @@ import {
   Modal,
 } from 'react-native';
 import CustomText from '../shared/CustomText';
+import ShowPhoneModal from '../modals/ShowPhoneModal';
 
 const ServiceCard = ({item, modalVisible, setModalVisible, setSelected}) => {
   const [phoneVisible, setPhoneVisible] = useState(false);
   return (
-    <View style={styles.container}>
-      <Modal
-        animationType="slide"
-        transparent={true}
+    <>
+      <ShowPhoneModal
         visible={phoneVisible}
-        onRequestClose={() => {
-          setModalVisible(!setPhoneVisible);
-        }}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <CustomText style={styles.modalText}>{item.phone}</CustomText>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setPhoneVisible(!phoneVisible)}>
-              <CustomText style={styles.textStyle}>X</CustomText>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          setSelected(item.id);
-          setModalVisible(!modalVisible);
-        }}>
-        <CustomText>{item.name}</CustomText>
-      </TouchableOpacity>
-      <CustomText>انقضا: {item.expire_time / 86400} روز</CustomText>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          setSelected(item.id);
-          setModalVisible(!modalVisible);
-        }}>
-        <CustomText>خرید اشتراک</CustomText>
-      </TouchableOpacity>
-    </View>
+        setVisible={setPhoneVisible}
+        phone={item.phone}
+      />
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            setSelected(item.id);
+            setPhoneVisible(!phoneVisible);
+          }}>
+          <CustomText>{item.name}</CustomText>
+        </TouchableOpacity>
+        <CustomText>انقضا: {item.expire_time / 86400} روز</CustomText>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            setSelected(item.id);
+            setModalVisible(!modalVisible);
+          }}>
+          <CustomText>خرید اشتراک</CustomText>
+        </TouchableOpacity>
+      </View>
+    </>
   );
 };
 
