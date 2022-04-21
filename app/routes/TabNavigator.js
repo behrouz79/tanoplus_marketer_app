@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IndexRoutes from './IndexRoutes';
-import MoreInfo from '../screens/MoreInfo';
+import MoreInfoScreen from '../screens/MoreInfoScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../constants/colors';
 
@@ -15,11 +15,9 @@ const TabNavigator = () => {
           let iconName;
           if (route.name === 'Index') {
             iconName = focused ? 'calendar-alt' : 'calendar-alt';
-          } else if (route.name === 'MoreInfo') {
+          } else if (route.name === 'MoreInfoScreen') {
             iconName = focused ? 'clipboard-list' : 'clipboard-list';
           }
-
-          // You can return any component that you like here!
           return <Icon name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: Colors.primary,
@@ -34,7 +32,7 @@ const TabNavigator = () => {
       <Tab.Screen
         name="MoreInfo"
         options={{title: 'بیشتر'}}
-        component={MoreInfo}
+        component={MoreInfoScreen}
       />
     </Tab.Navigator>
   );

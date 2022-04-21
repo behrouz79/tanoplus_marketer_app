@@ -5,33 +5,19 @@ import {useQuery} from 'react-query';
 import {buySubscription, getServices} from '../api/services';
 import ServiceCard from './cards/ServiceCard';
 import SubScriptionModal from './modals/SubScriptionModal';
-import {customToast, LoadingToast, successToast} from '../utils/toasts';
+import {LoadingToast, successToast} from '../utils/toasts';
 import Toast from 'react-native-tiny-toast';
 import CustomText from './shared/CustomText';
-import {orderStatus} from '../api/order';
 
-const OpenURLButton = async url => {
-  await Linking.openURL(url);
+const OpenURLButton = url => {
+  Linking.openURL(url);
 };
 
-const GetOrderStatus = async id => {
-  await orderStatus(id).then(data => {
-    console.log(data)
-    customToast(`${data.is_paid ? 'تراکنش موفق بود.' : 'تراکنش ناموفق بود.'}`);
-  });
-};
-
-const SubScription = ({route: {params}}) => {
+const SubScription = () => {
   const [services, setServices] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selected, setSelected] = useState(0);
   const {isLoading, error, data} = useQuery('services', getServices);
-
-  useEffect(() => {
-    if (params?.order_id) {
-      GetOrderStatus(params?.order_id);
-    }
-  }, [params]);
 
   useEffect(() => {
     setServices(data?.data);
@@ -52,11 +38,7 @@ const SubScription = ({route: {params}}) => {
             buySubscription(selected, subscription_id, pay_now).then(
               ({data: {message, status, link}}) => {
                 Toast.hide();
-                if (status === 200) {
-                  successToast(message);
-                } else {
-                  customToast(message);
-                }
+                successToast(message);
                 if (link) {
                   OpenURLButton(link);
                 }

@@ -5,7 +5,6 @@ import SplashScreen from './app/screens/SplashScreen';
 import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from './app/screens/LoginScreen';
 import {QueryClient, QueryClientProvider} from 'react-query';
-import IndexRoutes from './app/routes/IndexRoutes';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
 import Firebase from '@react-native-firebase/app';

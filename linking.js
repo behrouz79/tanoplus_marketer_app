@@ -2,11 +2,11 @@ const config = {
   screens: {
     Home: {
       screens: {
+        MoreInfo: '/moreinfo',
         Index: {
-          initialRouteName: 'Index',
           screens: {
             SubScription: {
-              path: 'subscription/:order_id',
+              path: 'subscription',
             },
           },
         },
@@ -16,7 +16,7 @@ const config = {
 };
 
 const linking = {
-  prefixes: ['marketer://api.tanoplus.com/'],
+  prefixes: ['marketer://tanoplus.com'],
   config,
 };
 
