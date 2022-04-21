@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MainScreen from '../components/shared/MainScreen';
 import {useQuery} from 'react-query';
 import {getPositionData} from '../api/Profile';
@@ -7,6 +7,7 @@ import CustomText from '../components/shared/CustomText';
 import CustomTextBold from '../components/shared/CustomTextBold';
 import {Colors} from '../constants/colors';
 import {magiketProductList} from '../api/magiket';
+import MagiketDesModal from '../components/modals/MagiketDesModal';
 
 const info = ({item}) => {
   return (
@@ -17,32 +18,38 @@ const info = ({item}) => {
   );
 };
 
-const MagiketProductCard = ({item}) => {
-  return (
-    <View style={styles.magiketCard}>
-      <CustomTextBold style={styles.magiketText}>{item.title}</CustomTextBold>
-      <CustomTextBold style={styles.magiketText}>
-        کمیسیون : {item.commission}
-      </CustomTextBold>
-      <TouchableOpacity
-        style={{
-          backgroundColor: Colors.lightGray,
-          paddingHorizontal: 5,
-          borderRadius: 8,
-        }}>
-        <CustomText>ثبت سفارش</CustomText>
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const MoreInfoScreen = () => {
+const MoreInfoScreen = ({navigation}) => {
   const {isLoading, error, data} = useQuery('PositionData', getPositionData);
   const {
     isLoading: magiketIsLoading,
     error: magiketError,
     data: magiketProducts,
   } = useQuery('MagiketProductList', magiketProductList);
+  const [confirmModal, setConfirmModal] = useState(false);
+  const [productId, setProductId] = useState(0);
+
+  const MagiketProductCard = ({item}) => {
+    return (
+      <View style={styles.magiketCard}>
+        <CustomTextBold style={styles.magiketText}>{item.title}</CustomTextBold>
+        <CustomTextBold style={styles.magiketText}>
+          کمیسیون : {item.commission}
+        </CustomTextBold>
+        <TouchableOpacity
+          onPress={() => {
+            setProductId(item.id);
+            setConfirmModal(true);
+          }}
+          style={{
+            backgroundColor: Colors.lightGray,
+            paddingHorizontal: 5,
+            borderRadius: 8,
+          }}>
+          <CustomText>ثبت سفارش</CustomText>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   return (
     <MainScreen>
@@ -93,7 +100,25 @@ const MoreInfoScreen = () => {
             keyExtractor={(item, index) => index}
           />
         )}
+        <TouchableOpacity
+          style={{
+            backgroundColor: Colors.lightGray,
+            paddingVertical: 5,
+            marginHorizontal: 10,
+            borderRadius: 8,
+            alignItems: 'center',
+          }}
+          onPress={() => navigation.navigate('MagiketOrders')}>
+          <CustomText>سفارشات ثبت شده مجیکت -></CustomText>
+        </TouchableOpacity>
       </View>
+      {confirmModal && (
+        <MagiketDesModal
+          visible={confirmModal}
+          setVisible={setConfirmModal}
+          product_id={productId}
+        />
+      )}
     </MainScreen>
   );
 };

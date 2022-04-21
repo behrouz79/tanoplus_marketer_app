@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import Suggestion from '../components/Suggestion';
 import SuggestionDetails from '../components/SuggestionDetails';
 import MagiketOrderScreen from '../screens/MagiketOrderScreen';
+import MoreInfoScreen from "../screens/MoreInfoScreen";
 
 const Stack = createStackNavigator();
 
@@ -21,27 +22,7 @@ const IndexRoutes = () => {
       <Stack.Screen
         options={{headerTitle: 'پنل بازاریاب'}}
         name="Home"
-        component={HomeScreen}
-      />
-      <Stack.Screen
-        options={{headerTitle: 'ساخت سرویس'}}
-        name="CreateService"
-        component={CreateService}
-      />
-      <Stack.Screen
-        options={{headerTitle: 'اشتراک'}}
-        name="SubScription"
-        component={SubScription}
-      />
-      <Stack.Screen
-        options={{headerTitle: 'ارسال پیشنهاد'}}
-        name="Suggestion"
-        component={Suggestion}
-      />
-      <Stack.Screen
-        options={{headerTitle: 'وضعیت پیشنهادات'}}
-        name="SuggestionDetails"
-        component={SuggestionDetails}
+        component={MoreInfoScreen}
       />
       <Stack.Screen
         options={{headerTitle: 'وضعیت سفارشات مجیکت'}}

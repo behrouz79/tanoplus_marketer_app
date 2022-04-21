@@ -23,6 +23,14 @@ export const customToast = message => {
   });
 };
 
+export const customToastBottom = message => {
+  Toast.show(message, {
+    position: Toast.position.BOTTOM,
+    shadow: true,
+    containerStyle: styles.container,
+  });
+};
+
 const styles = StyleSheet.create({
   container: {
     zIndex: 100,

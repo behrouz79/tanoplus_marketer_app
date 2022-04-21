@@ -4,6 +4,7 @@ import IndexRoutes from './IndexRoutes';
 import MoreInfoScreen from '../screens/MoreInfoScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../constants/colors';
+import MoreInfoRoutes from "./MoreInfoRoutes";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +33,7 @@ const TabNavigator = () => {
       <Tab.Screen
         name="MoreInfo"
         options={{title: 'بیشتر'}}
-        component={MoreInfoScreen}
+        component={MoreInfoRoutes}
       />
     </Tab.Navigator>
   );
