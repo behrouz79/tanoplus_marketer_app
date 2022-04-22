@@ -8,7 +8,7 @@ import {checkAppVersion, getProfileDta} from '../api/Profile';
 import CustomTextBold from '../components/shared/CustomTextBold';
 import CardButton from '../components/buttons/CardButton';
 
-const app_version = '2.0.0';
+const app_version = '2.0.1';
 
 const HomeScreen = ({navigation}) => {
   const {isLoading, error, data} = useQuery('ProfileData', getProfileDta);
@@ -16,7 +16,7 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     checkAppVersion(app_version).then(result => {
       if (result.status === 'new') {
-        alert(result.message);
+        alert('بروزرسانی!', result.message);
       }
     });
   }, []);
