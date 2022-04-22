@@ -7,12 +7,23 @@ import {FlatList} from 'react-native';
 import RowView from '../components/shared/RowView';
 import {StyleSheet} from 'react-native';
 
+const status = param => {
+  switch (param) {
+    case 'pending':
+      return 'درحال برسی';
+    case 'completed':
+      return 'تایید شده';
+    case 'cancel':
+      return 'تایید نشده';
+  }
+};
+
 const OrderCard = ({item}) => {
   return (
     <RowView style={styles.container}>
       <CustomText>{item.product}</CustomText>
-      <CustomText>{item.update_date}</CustomText>
-      <CustomText>{item.status}</CustomText>
+      <CustomText>اخرین تغییر: {item.update_date}</CustomText>
+      <CustomText>{status(item.status)}</CustomText>
     </RowView>
   );
 };
@@ -27,7 +38,6 @@ const MagiketOrderScreen = () => {
     <MainScreen>
       {isError && <CustomText>مشکلی رخ داده است</CustomText>}
       {isLoading && <CustomText>درحال دریافت اطلاعات</CustomText>}
-      {console.log(data)}
       {data && (
         <FlatList
           data={data}

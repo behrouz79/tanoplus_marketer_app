@@ -1,10 +1,9 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IndexRoutes from './IndexRoutes';
-import MoreInfoScreen from '../screens/MoreInfoScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../constants/colors';
-import MoreInfoRoutes from "./MoreInfoRoutes";
+import MoreInfoRoutes from './MoreInfoRoutes';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +15,7 @@ const TabNavigator = () => {
           let iconName;
           if (route.name === 'Index') {
             iconName = focused ? 'calendar-alt' : 'calendar-alt';
-          } else if (route.name === 'MoreInfoScreen') {
+          } else if (route.name === 'MoreInfo') {
             iconName = focused ? 'clipboard-list' : 'clipboard-list';
           }
           return <Icon name={iconName} size={size} color={color} />;
