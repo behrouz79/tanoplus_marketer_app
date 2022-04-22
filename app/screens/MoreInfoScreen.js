@@ -33,7 +33,7 @@ const MoreInfoScreen = ({navigation}) => {
       <View style={styles.magiketCard}>
         <CustomTextBold style={styles.magiketText}>{item.title}</CustomTextBold>
         <CustomTextBold style={styles.magiketText}>
-          کمیسیون : {item.commission}
+          کمیسیون : {item.commission} %
         </CustomTextBold>
         <TouchableOpacity
           onPress={() => {
