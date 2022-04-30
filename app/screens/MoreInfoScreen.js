@@ -20,7 +20,8 @@ const info = ({item}) => {
 
 const MoreInfoScreen = ({navigation}) => {
   const {isLoading, error, data} = useQuery('PositionData', getPositionData);
-  const [showSubset, seShowSubset] = useState(false);
+  const [showSubset, setShowSubset] = useState(false);
+  const [leader, setLeader] = useState('سرگروه ندارید');
   const {
     isLoading: magiketIsLoading,
     error: magiketError,
@@ -31,7 +32,13 @@ const MoreInfoScreen = ({navigation}) => {
 
   useEffect(() => {
     const check_show_subset = async () => {
-      await checkTeamLeader().then(res => seShowSubset(res));
+      let res = await checkTeamLeader();
+      if (res.status === 'ok') {
+        setShowSubset(true);
+      }
+      if (res?.parent) {
+        setLeader(res.parent);
+      }
     };
     check_show_subset();
   }, []);
@@ -120,6 +127,7 @@ const MoreInfoScreen = ({navigation}) => {
           <CustomText>سفارشات ثبت شده مجیکت -></CustomText>
         </TouchableOpacity>
       </View>
+      <CustomText style={{alignSelf: 'center'}}>{leader}</CustomText>
       {showSubset ? (
         <TouchableOpacity
           style={{

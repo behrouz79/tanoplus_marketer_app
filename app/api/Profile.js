@@ -92,7 +92,7 @@ export const checkTeamLeader = async () => {
         Authorization: `Bearer ${await token()}`,
       },
     });
-    return data.status === 'ok';
+    return data;
   } catch (e) {
     console.log(e);
   }
