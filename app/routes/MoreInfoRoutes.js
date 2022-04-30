@@ -2,13 +2,9 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StyleSheet} from 'react-native';
 import {Colors} from '../constants/colors';
-import CreateService from '../components/CreateService';
-import SubScription from '../components/SubScription';
-import HomeScreen from '../screens/HomeScreen';
-import Suggestion from '../components/Suggestion';
-import SuggestionDetails from '../components/SuggestionDetails';
 import MagiketOrderScreen from '../screens/MagiketOrderScreen';
-import MoreInfoScreen from "../screens/MoreInfoScreen";
+import MoreInfoScreen from '../screens/MoreInfoScreen';
+import SubsetsScreen from '../screens/SubsetsScreen';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +24,11 @@ const IndexRoutes = () => {
         options={{headerTitle: 'وضعیت سفارشات مجیکت'}}
         name="MagiketOrders"
         component={MagiketOrderScreen}
+      />
+      <Stack.Screen
+        options={{headerTitle: 'زیر مجموعه ها'}}
+        name="MarketerSubsets"
+        component={SubsetsScreen}
       />
     </Stack.Navigator>
   );

@@ -84,3 +84,16 @@ export const checkAppVersion = async version => {
     console.log(e);
   }
 };
+
+export const checkTeamLeader = async () => {
+  try {
+    const {data} = await http.get(`${http.url}/marketer/check/teamleader/`, {
+      headers: {
+        Authorization: `Bearer ${await token()}`,
+      },
+    });
+    return data.status === 'ok';
+  } catch (e) {
+    console.log(e);
+  }
+};

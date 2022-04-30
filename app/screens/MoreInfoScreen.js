@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import MainScreen from '../components/shared/MainScreen';
 import {useQuery} from 'react-query';
-import {getPositionData} from '../api/Profile';
+import {checkTeamLeader, getPositionData} from '../api/Profile';
 import {FlatList, StyleSheet, TouchableOpacity, View} from 'react-native';
 import CustomText from '../components/shared/CustomText';
 import CustomTextBold from '../components/shared/CustomTextBold';
@@ -20,6 +20,7 @@ const info = ({item}) => {
 
 const MoreInfoScreen = ({navigation}) => {
   const {isLoading, error, data} = useQuery('PositionData', getPositionData);
+  const [showSubset, seShowSubset] = useState(false);
   const {
     isLoading: magiketIsLoading,
     error: magiketError,
@@ -27,6 +28,13 @@ const MoreInfoScreen = ({navigation}) => {
   } = useQuery('MagiketProductList', magiketProductList);
   const [confirmModal, setConfirmModal] = useState(false);
   const [productId, setProductId] = useState(0);
+
+  useEffect(() => {
+    const check_show_subset = async () => {
+      await checkTeamLeader().then(res => seShowSubset(res));
+    };
+    check_show_subset();
+  }, []);
 
   const MagiketProductCard = ({item}) => {
     return (
@@ -112,6 +120,20 @@ const MoreInfoScreen = ({navigation}) => {
           <CustomText>سفارشات ثبت شده مجیکت -></CustomText>
         </TouchableOpacity>
       </View>
+      {showSubset ? (
+        <TouchableOpacity
+          style={{
+            backgroundColor: Colors.lightGray,
+            paddingVertical: 5,
+            marginHorizontal: 10,
+            borderRadius: 8,
+            alignItems: 'center',
+            marginTop: 2,
+          }}
+          onPress={() => navigation.navigate('MarketerSubsets')}>
+          <CustomText>زیر مجموعه ها</CustomText>
+        </TouchableOpacity>
+      ) : null}
       {confirmModal && (
         <MagiketDesModal
           visible={confirmModal}
