@@ -135,6 +135,8 @@ const CreateService = ({navigation}) => {
           firstname: '',
           family: '',
           name: '',
+          address: '',
+          about: '',
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}>
@@ -165,6 +167,18 @@ const CreateService = ({navigation}) => {
             autoCorrect={false}
             placeholderTextColor={Colors.gray}
             name="name"
+          />
+          <CustomFormField
+            placeholder="آدرس"
+            autoCorrect={false}
+            placeholderTextColor={Colors.gray}
+            name="address"
+          />
+          <CustomFormField
+            placeholder="درباره"
+            autoCorrect={false}
+            placeholderTextColor={Colors.gray}
+            name="about"
           />
           <TouchableOpacity
             onPress={() => setCategoryVisible(!categoryVisible)}>

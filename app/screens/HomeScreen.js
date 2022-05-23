@@ -8,7 +8,7 @@ import {checkAppVersion, getProfileDta} from '../api/Profile';
 import CustomTextBold from '../components/shared/CustomTextBold';
 import CardButton from '../components/buttons/CardButton';
 
-const app_version = '2.0.2';
+const app_version = '2.0.3';
 
 const HomeScreen = ({navigation}) => {
   const {isLoading, error, data} = useQuery('ProfileData', getProfileDta);
